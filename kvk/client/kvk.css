@@ -6,6 +6,20 @@
   font-family: sourcesans,Arial,Verdana,sans-serif;
 }
 
+.right { float: right; }
+
+.form-horizontal {
+	margin: 0;
+	padding: 20px;
+	margin-top: 20px;	
+	border-radius: 2px;
+	color: rgba(0, 0, 0, 0.84);
+	background: #ffffff;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-horizontal .form-group { margin-left: 0; margin-right: 0; }
+
 .header-card {
   margin-top: 20px;
   background: #fc3;
