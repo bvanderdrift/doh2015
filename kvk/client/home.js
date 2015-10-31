@@ -69,6 +69,7 @@ Template.Home.events({
         radius.val("")
         target.val("")
 
+        Session.set("compose-open", false);
         return false;
     },
     "reset form": function () {
