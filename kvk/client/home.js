@@ -21,6 +21,9 @@ Template.Initiative.helpers({
             return 100;
         else
             return this.target / this.votedUsers.length
+    },
+    composeOpen: function () {
+        return Session.get("compose-comment-open");
     }
 })
 
@@ -30,7 +33,16 @@ Template.Initiative.events({
         Initiatives.update({_id: this._id}, {
             $addToSet: {"votedUsers": [thisUserId]}
         }, false);
-    }
+    },
+    "mouseenter .mdi-content-add": function (evt) {
+        $(evt.target).removeClass("mdi-content-add").addClass("mdi-content-create");
+    },
+    "mouseleave .mdi-content-create": function (evt) {
+        $(evt.target).removeClass("mdi-content-create").addClass("mdi-content-add");
+    },
+    "click .compose > a": function (evt) {
+    Session.set("compose-comment-open", !Session.get("compose-comment-open"));
+}
 })
 
 Template.Home.events({

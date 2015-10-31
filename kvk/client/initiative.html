@@ -40,10 +40,37 @@
                 </div>
             </div>
             <div class="row">
+
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">Comments</div>
+                        <div class="compose">
+                            <a href="javascript:void(0)" class="btn btn-danger btn-fab btn-raised mdi-content-add">
+                                <div class="ripple-wrapper"></div>
+                            </a>
+                        </div>
                         <div class="panel-body">
+                            <div class="row">
+                                <form class="form-horizontal col-lg-10 col-lg-offset-1 default-closed {{#if composeOpen}}open{{/if}}">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Comment</label>
+
+                                        <div class="col-lg-10">
+                                            <div class="form-control-wrapper">
+                                                <textarea class="form-control empty input-description"
+                                                          rows="5"></textarea>
+                                                <span class="material-input"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="right">
+                                            <button class="btn btn-flat btn-cancel" type="reset">Cancel</button>
+                                            <button class="btn btn-flat btn-primary" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="list-group">
                                 <div class="list-group-item">
                                     <div class="row-picture">
