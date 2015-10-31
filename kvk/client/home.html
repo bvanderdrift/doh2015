@@ -6,9 +6,9 @@
 				<div class="form-group">
 						<label class="col-lg-2 control-label">Title</label>
 						<div class="col-lg-10">
-								<div class="form-control-wrapper">
-		            	<input class="form-control input-title" />  
-									<span class="material-input"></span>
+							<div class="form-control-wrapper">
+		            			<input class="form-control input-title" />  
+								<span class="material-input"></span>
 							</div>
 						</div>
 				</div>
@@ -16,8 +16,30 @@
 						<label class="col-lg-2 control-label">Description</label>
 						<div class="col-lg-10">
 								<div class="form-control-wrapper">
-		            	<textarea class="form-control empty input-description" rows="3"></textarea>  
+		            				<textarea class="form-control empty input-description" rows="3"></textarea>  
 									<span class="material-input"></span>
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label class="col-lg-2 control-label">Branch</label>
+						<div class="col-lg-10">
+							<select class="form-control input-branch">
+			                    <option value="AutomotiveValue">Automotive</option>
+			                    <option value="NogIEtsValue">Nog Iets</option>
+			                    <option value="2">3</option>
+			                    <option value="34">4</option>
+			                    <option value="34">5</option>
+			                </select>
+			                <span class="material-input"></span>		
+						</div>
+				</div>
+				<div class="form-group">
+						<label class="col-lg-2 control-label">Radius</label>
+						<div class="col-lg-10">
+								<div class="form-control-wrapper">
+		            			<input class="form-control input-radius" />  
+								<span class="material-input"></span>
 							</div>
 						</div>
 				</div>
@@ -34,12 +56,12 @@
 			<div class="list-group-item">
 					<div class="row-action-primary">
 						<div style="margin-top: 10px; display:inline-block;">
-								<div style="text-align: center"><span title="0 votes">120</span></div>
+								<div style="text-align: center"><span title="0 votes">{{votes}}</span></div>
 								<div>votes</div>
 						</div>
 						&nbsp;
 						<div style="margin: 10px 10px 0 0; display:inline-block;">
-								<div style="text-align: center"><span title="0 votes">10</span></div>
+								<div style="text-align: center"><span title="0 votes">{{comments}}</span></div>
 								<div>comments</div>
 						</div>
 					</div>
@@ -47,9 +69,9 @@
 							<div class="least-content">23423</div>
 							<h4 class="list-group-item-heading"><a href="/initiative/{{_id}}">{{title}}</a></h4>
 							<p class="list-group-item-text">
-								<span class="label label-primary">Autmotive</span>
-					<span class="label label-success">10km</span>
-					<span class="pull-right text-muted">Posted by <a href="javascript:void(0)">Baas B.V.</a> at 25-10-2015</span>
+								<span class="label label-primary">{{branch}}</span>
+					<span class="label label-success">{{radius}}km</span>
+					<span class="pull-right text-muted">Posted by <a href="javascript:void(0)">Baas B.V.</a> at {{date}}</span>
 				</p>
 					</div>
 			</div>
