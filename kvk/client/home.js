@@ -1,13 +1,28 @@
 Template.Home.helpers({
+	
+	inititiatives: function(){
+		var query = {}
+				
+		if(Session.get("search")) {
+			var r = new RegExp(".*"+Session.get("search")+".*", "i")
+			query["$or"] = [
+				{"title": r},
+				{"description": r},
+				{"branch": r},
+			];		
+		}
 
-    inititiatives: function () {
-        return Initiatives.find({}, {sort: {date: -1}});
-    },
+		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
 
-    composeOpen: function () {
-        return Session.get("compose-open");
-    }
+		outer = { $and: [query, beersQuery] }
 
+		return Initiatives.find(outer, { sort: { date: -1 } });
+	},
+	
+	composeOpen: function(){
+		return Session.get("compose-open");
+	}
+	
 })
 
 Template.Initiative.helpers({
@@ -70,6 +85,7 @@ Template.Home.events({
         radius.val("")
         target.val("")
 
+        Session.set("compose-open", false);
         return false;
     },
     "reset form": function () {
