@@ -1,5 +1,4 @@
-Template.Home.helpers({
-	
+Template.Home.helpers({	
 	inititiatives: function(){
 		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
 		var query = beersQuery;
@@ -19,7 +18,6 @@ Template.Home.helpers({
 	composeOpen: function(){
 		return Session.get("compose-open");
 	}
-	
 })
 
 Template.Initiative.helpers({
@@ -33,6 +31,9 @@ Template.Initiative.helpers({
             return 100;
         else
             return this.target / this.votedUsers.length
+    },
+    composeOpen: function () {
+        return Session.get("compose-comment-open");
     }
 })
 
@@ -40,8 +41,29 @@ Template.Initiative.events({
     "click #endorseButton": function (evt) {
         thisUserId = 1;
         Initiatives.update({_id: this._id}, {
-            $addToSet: {"votedUsers": [thisUserId]}
+            $addToSet: {"votedUsers": thisUserId}
         }, false);
+    },
+    "mouseenter .mdi-content-add": function (evt) {
+        $(evt.target).removeClass("mdi-content-add").addClass("mdi-content-create");
+    },
+    "mouseleave .mdi-content-create": function (evt) {
+        $(evt.target).removeClass("mdi-content-create").addClass("mdi-content-add");
+    },
+    "click .compose > a": function (evt) {
+        Session.set("compose-comment-open", !Session.get("compose-comment-open"));
+    },
+    "submit form": function (evt) {
+        var descr = $(evt.target).find(".input-description");
+        var userId = 0;
+        Initiatives.update({_id: this._id}, {
+            $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}}
+        }, false);
+
+        descr.val("");
+
+        Session.set("compose-open", false);
+        return false;
     }
 })
 
