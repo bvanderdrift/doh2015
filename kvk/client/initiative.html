@@ -11,8 +11,14 @@
 
                 <p>{{description}}</p>
 
-                <a href="javascript:void(0)" class="btn btn-success btn-raised">Endorse</a>
-                <a href="javascript:void(0)" class="btn btn-danger btn-raised">Reject</a>
+                <a href="javascript:void(0)" class="btn btn-success btn-raised">
+                    <span class="mdi-action-thumb-up"></span> Endorse</a>
+                <a href="javascript:void(0)" class="btn btn-danger btn-raised">
+                    <span class="mdi-action-thumb-down"></span> Reject</a>
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" style="width: 65%"></div>
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="panel panel-info">
@@ -24,11 +30,11 @@
                 <div class="panel panel-success">
                     <div class="panel-heading">Initiator Information</div>
                     <div class="panel-body">
-                        <ul>
-                            <li>Name:</li>
-                            <li>Company:</li>
-                            <li>Address</li>
-                            <li>Phone:</li>
+                        <ul id="contact-info">
+                            <li><span class="mdi-action-account-box"></span> Name:</li>
+                            <li><span class="mdi-action-work"></span> Company:</li>
+                            <li><span class="mdi-communication-email"></span> Email</li>
+                            <li><span class="mdi-communication-phone"></span> Phone:</li>
                         </ul>
                     </div>
                 </div>
@@ -44,6 +50,9 @@
                                         <img class="circle" src="http://lorempixel.com/56/56/people/1" alt="icon">
                                     </div>
                                     <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>Alice</h6>
+
                                         <p class="list-group-item-text">Donec id elit non mi porta gravida at eget
                                             metus</p>
                                     </div>
@@ -54,14 +63,21 @@
                                         <img class="circle" src="http://lorempixel.com/56/56/people/2" alt="icon">
                                     </div>
                                     <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>Bob</h6>
+
                                         <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
                                     </div>
                                 </div>
+                                <div class="list-group-separator"></div>
                                 <div class="list-group-item">
                                     <div class="row-picture">
                                         <img class="circle" src="http://lorempixel.com/56/56/people/3" alt="icon">
                                     </div>
                                     <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>Charles</h6>
+
                                         <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error
                                             sit
                                             voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
@@ -70,21 +86,29 @@
                                             explicabo</p>
                                     </div>
                                 </div>
+                                <div class="list-group-separator"></div>
                                 <div class="list-group-item">
                                     <div class="row-picture">
                                         <img class="circle" src="http://lorempixel.com/56/56/people/4" alt="icon">
                                     </div>
                                     <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>David</h6>
+
                                         <p class="list-group-item-text"> Nemo enim ipsam voluptatem quia voluptas sit
                                             aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
                                             ratione voluptatem sequi nesciunt</p>
                                     </div>
                                 </div>
+                                <div class="list-group-separator"></div>
                                 <div class="list-group-item">
                                     <div class="row-picture">
                                         <img class="circle" src="http://lorempixel.com/56/56/people/5" alt="icon">
                                     </div>
                                     <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>Edward</h6>
+
                                         <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
                                     </div>
                                 </div>
