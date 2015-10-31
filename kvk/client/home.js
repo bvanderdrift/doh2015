@@ -99,5 +99,19 @@ Template.Home.events({
     },
     "click .compose > a": function (evt) {
         Session.set("compose-open", !Session.get("compose-open"));
-    }
+    },
+	
+	
+		"click #input-header": function(evt){
+		console.log("Adding to",evt.target)
+					if($(evt.target).find("input").size() == 0) {
+				$("<input />").addClass("transparent").appendTo($(evt.target).text(""));
+			}
+		},
+		
+		"keyup #input-header input": function(evt){
+			Meteor.call("search", $(evt.target).val(), function(){
+				console.log("Search", arguments);
+			});
+		}
 })

@@ -96,3 +96,14 @@
 .list-group .list-group-separator:before {
   width: calc(100% - 150px);
 }
+
+input.transparent {
+	font: inherit;
+	border: none;
+	padding: 0;
+	margin: 0;
+	outline: none;
+	-webkit-appearance: none;
+	color: inherit;
+	background: none;
+}
