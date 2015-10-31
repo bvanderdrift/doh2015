@@ -1,7 +1,7 @@
 Template.Home.helpers({
 	
 	inititiatives: function(){
-		return Initiatives.find({});
+		return Initiatives.find({}, { sort: { date: -1 } });
 	}
 	
 })
@@ -12,7 +12,8 @@ Template.Home.events({
 		var descr = $(evt.target).find(".input-description")
 		Initiatives.insert({
 			title: title.val(),
-			description: descr.val()
+			description: descr.val(),
+			date: new Date(),
 		})
 		title.val("")
 		descr.val("")

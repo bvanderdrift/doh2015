@@ -3,20 +3,35 @@
 </head>
 
 <template name="ApplicationLayout">
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
-			<div class="card header-card">
-					<div class="card-content">
-							<div class="menu">
-								<a class="nav__button nav__button--account nav__button--secondary  js-submenu-toggle js-menu-account" href="#" data-label-default="Inloggen" data-label-mijnkvk="">Inloggen</a>
-							</div>
-							<h3 class="card-title">Plaza in front of the Chamber of Commerce</h3>
-							<div class="card-body">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-							</div>
-					</div>
+	<div class="navbar navbar-warning">
+	    <div class="navbar-header">
+	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	        </button>
+	        <a class="navbar-brand" href="javascript:void(0)">Empower</a>
+	    </div>
+	    <div class="navbar-collapse collapse navbar-warning-collapse">
+	        <ul class="nav navbar-nav">
+	            <li class="active"><a href="javascript:void(0)">Dashboard</a></li>
+ 				<li><a href="javascript:void(0)">Post Initiative</a></li>
+	        </ul>
+	        <form class="navbar-form navbar-left">
+	            <input type="text" class="form-control col-lg-8" placeholder="Search">
+	        </form>
+	    </div>
+	</div>
+
+	<div class="container">
+		<h1>Dashboard</h1>
+		<div class="well">
+			<div class="list-group">
+
+				{{> yield}}
+	
 			</div>
-			{{> yield}}
+
 		</div>
 	</div>
 </template>
