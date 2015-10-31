@@ -7,6 +7,10 @@ if (Meteor.isClient) {
 			return array.length;
 		return 0;
 	});
+	
+	Template.registerHelper("fromNow", function(date) {
+		return moment(date).fromNow();
+	})
 
 }
 
