@@ -2,6 +2,12 @@ Initiatives = new Meteor.Collection("initiatives");
 
 if (Meteor.isClient) {
 
+	Template.registerHelper("count", function(array) {
+		if(typeof array == "object" && array.length)
+			return array.length;
+		return 0;
+	});
+
 }
 
 if (Meteor.isServer) {
