@@ -1,0 +1,56 @@
+<template name="Home">
+
+	<form class="form-horizontal col-md-12">
+		<div class="form-group">
+				<label class="col-lg-2 control-label">Title</label>
+				<div class="col-lg-10">
+						<div class="form-control-wrapper">
+            	<input class="form-control input-title" />  
+							<span class="material-input"></span>
+					</div>
+				</div>
+		</div>
+		<div class="form-group">
+				<label class="col-lg-2 control-label">Description</label>
+				<div class="col-lg-10">
+						<div class="form-control-wrapper">
+            	<textarea class="form-control empty input-description" rows="3"></textarea>  
+							<span class="material-input"></span>
+					</div>
+				</div>
+		</div>
+		<div class="form-group">
+				<div class="right">
+						<button class="btn btn-flat btn-cancel" type="reset">Cancel</button>
+						<button class="btn btn-flat btn-primary" type="submit">Submit</button>
+				</div>
+		</div>
+	</form>
+	<div class="list-group-separator" style="width: calc(100% - 220px);"></div>
+
+	{{#each inititiatives}}
+	<div class="list-group-item">
+			<div class="row-action-primary">
+				<div style="margin-top: 10px; display:inline-block;">
+						<div style="text-align: center"><span title="0 votes">120</span></div>
+						<div>votes</div>
+				</div>
+				&nbsp;
+				<div style="margin: 10px 10px 0 0; display:inline-block;">
+						<div style="text-align: center"><span title="0 votes">10</span></div>
+						<div>comments</div>
+				</div>
+			</div>
+			<div class="row-content" style="width: calc(100% - 220px);">
+					<div class="least-content">23423</div>
+					<h4 class="list-group-item-heading"><a href="javascript:void(0)">{{title}}</a></h4>
+					<p class="list-group-item-text">
+						<span class="label label-primary">Autmotive</span>
+			<span class="label label-success">10km</span>
+			<span class="pull-right text-muted">Posted by <a href="javascript:void(0)">Baas B.V.</a> at 25-10-2015</span>
+		</p>
+			</div>
+	</div>
+	<div class="list-group-separator" style="width: calc(100% - 220px);"></div>
+	{{/each}}
+</template>
