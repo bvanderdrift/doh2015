@@ -1,28 +1,28 @@
 Template.Home.helpers({
-	
-	inititiatives: function(){
-		var query = {}
-				
-		if(Session.get("search")) {
-			var r = new RegExp(".*"+Session.get("search")+".*", "i")
-			query["$or"] = [
-				{"title": r},
-				{"description": r},
-				{"branch": r},
-			];		
-		}
 
-		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
+    inititiatives: function () {
+        var query = {}
 
-		outer = { $and: [query, beersQuery] }
+        if (Session.get("search")) {
+            var r = new RegExp(".*" + Session.get("search") + ".*", "i")
+            query["$or"] = [
+                {"title": r},
+                {"description": r},
+                {"branch": r},
+            ];
+        }
 
-		return Initiatives.find(outer, { sort: { date: -1 } });
-	},
-	
-	composeOpen: function(){
-		return Session.get("compose-open");
-	}
-	
+        var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
+
+        outer = {$and: [query, beersQuery]}
+
+        return Initiatives.find(outer, {sort: {date: -1}});
+    },
+
+    composeOpen: function () {
+        return Session.get("compose-open");
+    }
+
 })
 
 Template.Initiative.helpers({
@@ -46,7 +46,7 @@ Template.Initiative.events({
     "click #endorseButton": function (evt) {
         thisUserId = 1;
         Initiatives.update({_id: this._id}, {
-            $addToSet: {"votedUsers": [thisUserId]}
+            $addToSet: {"votedUsers": thisUserId}
         }, false);
     },
     "mouseenter .mdi-content-add": function (evt) {
@@ -56,8 +56,20 @@ Template.Initiative.events({
         $(evt.target).removeClass("mdi-content-create").addClass("mdi-content-add");
     },
     "click .compose > a": function (evt) {
-    Session.set("compose-comment-open", !Session.get("compose-comment-open"));
-}
+        Session.set("compose-comment-open", !Session.get("compose-comment-open"));
+    },
+    "submit form": function (evt) {
+        var descr = $(evt.target).find(".input-description");
+        var userId = 0;
+        Initiatives.update({_id: this._id}, {
+            $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}}
+        }, false);
+
+        descr.val("");
+
+        Session.set("compose-open", false);
+        return false;
+    }
 })
 
 Template.Home.events({
