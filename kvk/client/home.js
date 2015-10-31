@@ -1,8 +1,9 @@
 Template.Home.helpers({
 	
 	inititiatives: function(){
-		var query = {}
-				
+		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
+		var query = beersQuery;
+
 		if(Session.get("search")) {
 			var r = new RegExp(".*"+Session.get("search")+".*", "i")
 			query["$or"] = [
@@ -12,11 +13,7 @@ Template.Home.helpers({
 			];		
 		}
 
-		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
-
-		outer = { $and: [query, beersQuery] }
-
-		return Initiatives.find(outer, { sort: { date: -1 } });
+		return Initiatives.find(query, { sort: { date: -1 } });
 	},
 	
 	composeOpen: function(){
@@ -56,12 +53,16 @@ Template.Home.events({
         var radius = $(evt.target).find(".input-radius")
         var target = $(evt.target).find(".input-target")
 
+        kvkData = Session.get("kvkData");
+
         Initiatives.insert({
             title: title.val(),
             description: descr.val(),
             date: new Date(),
             radius: radius.val(),
             branch: branch.val(),
+            location: {type: "Point", coordinates: [kvkData.gpsLongitude, kvkData.gpsLatitude]},
+            //location: {type: "Point", coordinates: [6.117563, 50.774050]}, //8km van kvkData met id=1
             votes: 0,
             comments: 0,
             target: target.val()

@@ -14,7 +14,30 @@ if (Meteor.isClient) {
 // Initiatives.find( { "position" : { $near: CurrentPosition, distance:  } })
 
 filteredInitiativesQuery = function (kvkData) {
-	return {};
+	return {
+		// branch: 
+		// {
+		// 	$in : 
+		// 	[
+		// 		kvkData.mainActivitySbiCode, 
+		// 		kvkData.activity1SbiCode, 
+		// 		kvkData.activity2SbiCode
+		// 	]
+		// },
+
+		location:
+		{
+			$near:
+			{
+				$geometry:{
+					type: "Point",
+					coordinates: [kvkData.gpsLongitude, kvkData.gpsLatitude]
+				},
+				$maxDistance: 10000,
+				$minDistance: 0
+			}
+		}
+	};
 }
 
 if (Meteor.isServer) {
