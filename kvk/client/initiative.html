@@ -11,13 +11,13 @@
 
                 <p>{{description}}</p>
 
-                <a href="javascript:void(0)" class="btn btn-success btn-raised">
+                <a href="javascript:void(0)" id="endorseButton" class="btn btn-success btn-raised">
                     <span class="mdi-action-thumb-up"></span> Endorse</a>
-                <a href="javascript:void(0)" class="btn btn-danger btn-raised">
+                <a href="javascript:void(0)" id="rejectButton" class="btn btn-danger btn-raised">
                     <span class="mdi-action-thumb-down"></span> Reject</a>
 
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped active" style="width: 65%"></div>
+                    <div class="progress-bar progress-bar-striped active" style="width: {{calculatePercentage}}%"></div>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -114,7 +114,8 @@
                                 </div>
                                 <div class="list-group-separator"></div>
                             </div>
-                            <ul class="pagination pagination-sm">
+
+                            <ul class="pagination pagination-sm right">
                                 <li class="disabled"><a href="javascript:void(0)">«</a></li>
                                 <li class="active"><a href="javascript:void(0)">1</a></li>
                                 <li><a href="javascript:void(0)">2</a></li>
