@@ -1,7 +1,18 @@
 Template.Home.helpers({
 	
 	inititiatives: function(){
-		return Initiatives.find({}, { sort: { date: -1 } });
+		var query = {}
+				
+		if(Session.get("search")) {
+			var r = new RegExp(".*"+Session.get("search")+".*")
+			query["$or"] = [
+				{"title": r},
+				{"description": r},
+				{"branch": r},
+			];		
+		}
+
+		return Initiatives.find(query, { sort: { date: -1 } });
 	},
 	
 	composeOpen: function(){
