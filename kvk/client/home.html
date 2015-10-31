@@ -24,6 +24,15 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-2 control-label">Target Votes</label>
+							<div class="col-lg-10">
+								<div class="form-control-wrapper">
+									<input class="form-control input-target" />  
+									<span class="material-input"></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-lg-2 control-label">Branch</label>
 							<div class="col-lg-10">
 								<select class="form-control input-branch">
@@ -53,7 +62,6 @@
 						</div>
 					</form>
 			</div>
-			<div class="list-group-separator" style="width: calc(100% - 220px);"></div>
 
 			{{#each inititiatives}}
 			<div class="list-group-item">
@@ -68,8 +76,8 @@
 								<div>comments</div>
 						</div>
 					</div>
-					<div class="row-content" style="width: calc(100% - 220px);">
-							<div class="least-content">23423</div>
+					<div class="row-content" style="width: calc(100% - 140px);">
+							<!-- <div class="least-content">23423</div> -->
 							<h4 class="list-group-item-heading"><a href="/initiative/{{_id}}">{{title}}</a></h4>
 							<p class="list-group-item-text">
 								<span class="label label-primary">{{branch}}</span>
@@ -78,7 +86,7 @@
 				</p>
 					</div>
 			</div>
-			<div class="list-group-separator" style="width: calc(100% - 220px);"></div>
+			<div class="list-group-separator"></div>
 			{{/each}}
 		</div>
 	</div>

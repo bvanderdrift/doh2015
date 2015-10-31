@@ -88,3 +88,11 @@
 	height: auto;
 	overflow: auto;
 }
+
+.list-group-separator {
+  width: 100%;
+}
+
+.list-group .list-group-separator:before {
+  width: calc(100% - 150px);
+}
