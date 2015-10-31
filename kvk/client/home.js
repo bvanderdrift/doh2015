@@ -16,6 +16,7 @@ Template.Home.events({
 		var descr  = $(evt.target).find(".input-description")
 		var branch = $(evt.target).find(".input-branch")
 		var radius = $(evt.target).find(".input-radius")
+		var target = $(evt.target).find(".input-target")
 
 		Initiatives.insert({
 			title: title.val(),
@@ -24,10 +25,16 @@ Template.Home.events({
 			radius: radius.val(),
 			branch: branch.val(),
 			votes: 0,
-			comments: 0
+			comments: 0,
+			target: target.val()
 		})
+		
 		title.val("")
 		descr.val("")
+		branch.val("")
+		radius.val("")
+		target.val("")
+
 		return false;
 	},
 	"reset form": function(){
