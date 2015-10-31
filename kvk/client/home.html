@@ -1,31 +1,35 @@
 <template name="Home">
 
-	<form class="form-horizontal col-md-12">
-		<div class="form-group">
-				<label class="col-lg-2 control-label">Title</label>
-				<div class="col-lg-10">
-						<div class="form-control-wrapper">
-            	<input class="form-control input-title" />  
-							<span class="material-input"></span>
+	<div class="compose">
+		<a href="javascript:void(0)" class="btn btn-danger btn-fab btn-raised mdi-content-add"><div class="ripple-wrapper"></div></a>
+		<form class="form-horizontal col-md-12 {{#if composeOpen}}open{{/if}} default-closed">
+			<div class="form-group">
+					<label class="col-lg-2 control-label">Title</label>
+					<div class="col-lg-10">
+							<div class="form-control-wrapper">
+								<input class="form-control input-title" />  
+								<span class="material-input"></span>
+						</div>
 					</div>
-				</div>
-		</div>
-		<div class="form-group">
-				<label class="col-lg-2 control-label">Description</label>
-				<div class="col-lg-10">
-						<div class="form-control-wrapper">
-            	<textarea class="form-control empty input-description" rows="3"></textarea>  
-							<span class="material-input"></span>
+			</div>
+			<div class="form-group">
+					<label class="col-lg-2 control-label">Description</label>
+					<div class="col-lg-10">
+							<div class="form-control-wrapper">
+								<textarea class="form-control empty input-description" rows="3"></textarea>  
+								<span class="material-input"></span>
+						</div>
 					</div>
-				</div>
-		</div>
-		<div class="form-group">
-				<div class="right">
-						<button class="btn btn-flat btn-cancel" type="reset">Cancel</button>
-						<button class="btn btn-flat btn-primary" type="submit">Submit</button>
-				</div>
-		</div>
-	</form>
+			</div>
+			<div class="form-group">
+					<div class="right">
+							<button class="btn btn-flat btn-cancel" type="reset">Cancel</button>
+							<button class="btn btn-flat btn-primary" type="submit">Submit</button>
+					</div>
+			</div>
+		</form>
+	</div>
+	
 	<div class="list-group-separator" style="width: calc(100% - 220px);"></div>
 
 	{{#each inititiatives}}
