@@ -13,8 +13,8 @@ if (Meteor.isClient) {
 // initiative.position = [lat, lon]
 // Initiatives.find( { "position" : { $near: CurrentPosition, distance:  } })
 
-filteredInitiatives = function (kvkData) {
-	return Initiatives.find({title: 'lawl'});
+filteredInitiativesQuery = function (kvkData) {
+	return {};
 }
 
 if (Meteor.isServer) {

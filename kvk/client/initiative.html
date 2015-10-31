@@ -1,48 +1,23 @@
-<head>
-    <title>kvk</title>
-</head>
+<template name="Initiative">
 
-<body>
-<div class="navbar navbar-warning">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="javascript:void(0)">Empower</a>
-    </div>
-    <div class="navbar-collapse collapse navbar-warning-collapse">
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="javascript:void(0)">Dashboard</a></li>
-            <li><a href="javascript:void(0)">Post Initiative</a></li>
-        </ul>
-        <form class="navbar-form navbar-left">
-            <input type="text" class="form-control col-lg-8" placeholder="Search">
-        </form>
-    </div>
-</div>
-
-<div class="container">
     <div class="well">
         <div class="row">
             <div class="col-lg-8">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Initiative: Group buying</h3>
-                    </div>
-                    <div class="panel-body">
-                        <h2>What: Pallets of office paper</h2>
 
-                        <h3>Deadline: <span id="deadline">November 23rd</span> - Hosted by: <span id="initiator">Johhny Volta</span>
-                        </h3>
+                <h2>What: Pallets of office paper</h2>
 
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    </div>
+                <h3>Deadline: <span id="deadline">{{date}}</span> - Hosted by: <span id="initiator">Johhny Volta</span>
+                </h3>
+
+                <p>{{description}}</p>
+
+                <a href="javascript:void(0)" id="endorseButton" class="btn btn-success btn-raised">
+                    <span class="mdi-action-thumb-up"></span> Endorse</a>
+                <a href="javascript:void(0)" id="rejectButton" class="btn btn-danger btn-raised">
+                    <span class="mdi-action-thumb-down"></span> Reject</a>
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" style="width: {{calculatePercentage}}%"></div>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -52,21 +27,108 @@
                         <img src="http://placehold.it/300x150" alt=""/>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">Initiator Information</div>
                     <div class="panel-body">
-                        <ul>
-                            <li>Name:</li>
-                            <li>Company:</li>
-                            <li>Address</li>
-                            <li>Phone:</li>
+                        <ul id="contact-info">
+                            <li><span class="mdi-action-account-box"></span> Name:</li>
+                            <li><span class="mdi-action-work"></span> Company:</li>
+                            <li><span class="mdi-communication-email"></span> Email</li>
+                            <li><span class="mdi-communication-phone"></span> Phone:</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Comments</div>
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="http://lorempixel.com/56/56/people/1" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>Alice</h6>
+
+                                        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget
+                                            metus</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="http://lorempixel.com/56/56/people/2" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>Bob</h6>
+
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="http://lorempixel.com/56/56/people/3" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>Charles</h6>
+
+                                        <p class="list-group-item-text">Sed ut perspiciatis unde omnis iste natus error
+                                            sit
+                                            voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                                            quae
+                                            ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                                            explicabo</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="http://lorempixel.com/56/56/people/4" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>David</h6>
+
+                                        <p class="list-group-item-text"> Nemo enim ipsam voluptatem quia voluptas sit
+                                            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+                                            ratione voluptatem sequi nesciunt</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="http://lorempixel.com/56/56/people/5" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">Posted at</div>
+                                        <h6>Edward</h6>
+
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                            </div>
+
+                            <ul class="pagination pagination-sm right">
+                                <li class="disabled"><a href="javascript:void(0)">«</a></li>
+                                <li class="active"><a href="javascript:void(0)">1</a></li>
+                                <li><a href="javascript:void(0)">2</a></li>
+                                <li><a href="javascript:void(0)">3</a></li>
+                                <li><a href="javascript:void(0)">4</a></li>
+                                <li><a href="javascript:void(0)">5</a></li>
+                                <li><a href="javascript:void(0)">»</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</body>
+
+</template>
