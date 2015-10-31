@@ -1,0 +1,53 @@
+* {
+  transition: ease .2s;
+}
+
+* {
+  font-family: sourcesans,Arial,Verdana,sans-serif;
+}
+
+.header-card {
+  margin-top: 20px;
+  background: #fc3;
+  color: black;
+  padding: 20px;
+}
+
+.card-title {
+  padding: 0 20px;
+}
+
+.card .card-content {
+  position: static;
+}
+
+.menu {
+  float: right;
+  margin-right: 20px;
+}
+
+.nav__button--account:before {
+  background-image: url(http://www.kvk.nl/includes/img/icons-svg/icon-person.svg);
+  display: inline-block;
+  width: 1em;
+  margin-bottom: 0;
+  position: relative;
+  top: .15em;
+  height: 1em;
+  margin-right: .625rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  font-size: 1.5em;
+  line-height: 1em;
+  content: '';
+}
+
+*,
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
