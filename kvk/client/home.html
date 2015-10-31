@@ -2,54 +2,57 @@
 	<h1>Dashboard</h1>
 	<div class="well">
 		<div class="list-group">
-			<form class="form-horizontal col-md-12">
-				<div class="form-group">
-						<label class="col-lg-2 control-label">Title</label>
-						<div class="col-lg-10">
-							<div class="form-control-wrapper">
-		            			<input class="form-control input-title" />  
-								<span class="material-input"></span>
-							</div>
-						</div>
-				</div>
-				<div class="form-group">
-						<label class="col-lg-2 control-label">Description</label>
-						<div class="col-lg-10">
+			<div class="compose">
+				<a href="javascript:void(0)" class="btn btn-danger btn-fab btn-raised mdi-content-add"><div class="ripple-wrapper"></div></a>
+					<form class="form-horizontal col-md-12 default-closed {{#if composeOpen}}open{{/if}}">
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Title</label>
+							<div class="col-lg-10">
 								<div class="form-control-wrapper">
-		            				<textarea class="form-control empty input-description" rows="3"></textarea>  
+									<input class="form-control input-title" />  
 									<span class="material-input"></span>
+								</div>
 							</div>
 						</div>
-				</div>
-				<div class="form-group">
-						<label class="col-lg-2 control-label">Branch</label>
-						<div class="col-lg-10">
-							<select class="form-control input-branch">
-			                    <option value="AutomotiveValue">Automotive</option>
-			                    <option value="NogIEtsValue">Nog Iets</option>
-			                    <option value="2">3</option>
-			                    <option value="34">4</option>
-			                    <option value="34">5</option>
-			                </select>
-			                <span class="material-input"></span>		
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Description</label>
+							<div class="col-lg-10">
+									<div class="form-control-wrapper">
+										<textarea class="form-control empty input-description" rows="3"></textarea>  
+									<span class="material-input"></span>
+								</div>
+							</div>
 						</div>
-				</div>
-				<div class="form-group">
-						<label class="col-lg-2 control-label">Radius</label>
-						<div class="col-lg-10">
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Branch</label>
+							<div class="col-lg-10">
+								<select class="form-control input-branch">
+									<option value="AutomotiveValue">Automotive</option>
+									<option value="NogIEtsValue">Nog Iets</option>
+									<option value="2">3</option>
+									<option value="34">4</option>
+									<option value="34">5</option>
+								</select>
+								<span class="material-input"></span>		
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Radius</label>
+							<div class="col-lg-10">
 								<div class="form-control-wrapper">
-		            			<input class="form-control input-radius" />  
-								<span class="material-input"></span>
+									<input class="form-control input-radius" />  
+									<span class="material-input"></span>
+								</div>
 							</div>
 						</div>
-				</div>
-				<div class="form-group">
-						<div class="right">
+						<div class="form-group">
+							<div class="right">
 								<button class="btn btn-flat btn-cancel" type="reset">Cancel</button>
 								<button class="btn btn-flat btn-primary" type="submit">Submit</button>
+							</div>
 						</div>
-				</div>
-			</form>
+					</form>
+			</div>
 			<div class="list-group-separator" style="width: calc(100% - 220px);"></div>
 
 			{{#each inititiatives}}
