@@ -4,7 +4,7 @@ Template.Home.helpers({
 		var query = {}
 				
 		if(Session.get("search")) {
-			var r = new RegExp(".*"+Session.get("search")+".*")
+			var r = new RegExp(".*"+Session.get("search")+".*", "i")
 			query["$or"] = [
 				{"title": r},
 				{"description": r},
