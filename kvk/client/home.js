@@ -12,7 +12,11 @@ Template.Home.helpers({
 			];		
 		}
 
-		return Initiatives.find(query, { sort: { date: -1 } });
+		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
+
+		outer = { $and: [query, beersQuery] }
+
+		return Initiatives.find(outer, { sort: { date: -1 } });
 	},
 	
 	composeOpen: function(){
