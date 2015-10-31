@@ -31,7 +31,7 @@ Template.Home.events({
 		return false;
 	},
 	"reset form": function(){
-		
+		Session.set("compose-open", false);
 	},
 	"mouseenter .mdi-content-add": function(evt){
 		$(evt.target).removeClass("mdi-content-add").addClass("mdi-content-create");
