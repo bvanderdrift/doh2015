@@ -1,7 +1,7 @@
 Template.Home.helpers({
 	
 	inititiatives: function(){
-		return Initiatives.find({}, { sort: { date: -1 } });
+		return filteredInitiatives(Session.get("kvkData"));
 	}
 	
 })
