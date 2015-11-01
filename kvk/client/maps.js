@@ -9,6 +9,7 @@ function zoomToRadius(zoomLevel){
 var mapBoundsDependency = new Deps.Dependency;
 var markerDirectory = {};
 
+
 function addMarker(map, company, initiatives) {
 	var el = initiatives && initiatives[0];
 	
@@ -17,12 +18,18 @@ function addMarker(map, company, initiatives) {
 
 		var marker = markerDirectory[company.kvknummer] = new google.maps.Marker({
 			position: {lat: company.gpsLatitude, lng: company.gpsLongitude},
-			map: map
+			map: map,
+			icon: blueIcon
 		});
 
 		marker.addListener('click', function() {
 			infowindow.open(map, marker);
 		});
+	}
+
+	if(!initiatives) return;
+	if(initiatives.length > 0) {
+		markerDirectory[company.kvknummer].setIcon('marker_yellow.png');
 	}
 }
 
@@ -37,6 +44,25 @@ Template.Home.onRendered(function() {
 		// 	  mapTypeId: google.maps.MapTypeId.ROADMAP
 		// 	};
 		// });
+
+	blueIcon = {
+	    url: 'marker_blue.png',
+	    // This marker is 20 pixels wide by 32 pixels high.
+	    size: new google.maps.Size(20, 20),
+	    // The origin for this image is (0, 0).
+	    origin: new google.maps.Point(0, 0),
+	    // The anchor for this image is the base of the flagpole at (0, 32).
+	    anchor: new google.maps.Point(10, 10)
+	  };
+	 yellowIcon = {
+	    url: 'marker_yellow.png',
+	    // This marker is 20 pixels wide by 32 pixels high.
+	    size: new google.maps.Size(20, 20),
+	    // The origin for this image is (0, 0).
+	    origin: new google.maps.Point(0, 0),
+	    // The anchor for this image is the base of the flagpole at (0, 32).
+	    anchor: new google.maps.Point(10, 10)
+	  };
 
 		var mapOptions = {
 		  zoom: 13,
