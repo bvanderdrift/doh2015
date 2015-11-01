@@ -29,10 +29,11 @@ Template.Home.onRendered(function() {
 			});
 		}
 
-		var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_blue_selected.png' : '/marker_blue.png';
-		markerDirectory[company.kvknummer].setIcon(ico);
-
-		if(!initiatives) return;
+		if(!initiatives) {
+			var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_blue_selected.png' : '/marker_blue.png';
+			markerDirectory[company.kvknummer].setIcon(ico);
+			return;
+		}
 
 		if(initiatives.length > 0) {
 			var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_yellow_selected.png' : '/marker_yellow.png';
