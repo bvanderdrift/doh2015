@@ -6,44 +6,33 @@ function zoomToRadius(zoomLevel){
 	return Math.pow((14-zoomLevel), 2)
 }
 
-var mapBoundsDependency = new Deps.Dependency;
-var markerDirectory = {};
-
-
-function addMarker(map, company, initiatives) {
-	var el = initiatives && initiatives[0];
-	
-	if(!markerDirectory[company.kvknummer]) {
-		var infowindow = new google.maps.InfoWindow({ content: (el ? el.title + " - " : "") + company.businessName });
-
-		var marker = markerDirectory[company.kvknummer] = new google.maps.Marker({
-			position: {lat: company.gpsLatitude, lng: company.gpsLongitude},
-			map: map,
-			icon: blueIcon
-		});
-
-		marker.addListener('click', function() {
-			infowindow.open(map, marker);
-		});
-	}
-
-	if(!initiatives) return;
-	if(initiatives.length > 0) {
-		markerDirectory[company.kvknummer].setIcon('marker_yellow.png');
-	}
-}
-
 Template.Home.onRendered(function() {
 
-		// Deps.autorun(function() {
-		// 	var kvkData = Session.get("kvkData");
-		// 	var myLatlng = new google.maps.LatLng(kvkData.gpsLatitude, kvkData.gpsLongitude);
-		// 	var mapOptions = {
-		// 	  zoom: 13,
-		// 	  center: myLatlng,
-		// 	  mapTypeId: google.maps.MapTypeId.ROADMAP
-		// 	};
-		// });
+	var mapBoundsDependency = new Deps.Dependency;
+	var markerDirectory = {};
+	
+	function addMarker(map, company, initiatives) {
+		var el = initiatives && initiatives[0];
+		
+		if(!markerDirectory[company.kvknummer]) {
+			var infowindow = new google.maps.InfoWindow({ content: (el ? el.title + " - " : "") + company.businessName });
+	
+			var marker = markerDirectory[company.kvknummer] = new google.maps.Marker({
+				position: {lat: company.gpsLatitude, lng: company.gpsLongitude},
+				map: map,
+				icon: blueIcon
+			});
+	
+			marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			});
+		}
+	
+		if(!initiatives) return;
+		if(initiatives.length > 0) {
+			markerDirectory[company.kvknummer].setIcon('marker_yellow.png');
+		}
+	}
 
 	blueIcon = {
 	    url: 'marker_blue.png',
@@ -73,6 +62,29 @@ Template.Home.onRendered(function() {
 		map.addListener("center_changed", function(){ mapBoundsDependency.changed(); });
 		map.addListener("zoom_changed", function(){ mapBoundsDependency.changed(); });
 
+		var radiusCircle = new google.maps.Circle({
+			strokeColor: '#083764',
+			strokeOpacity: 0.8,
+			strokeWeight: 2,
+			fillColor: '#000000',
+			fillOpacity: 0.35,
+			map: map,
+		});
+
+		Deps.autorun(function(){
+			var kvkData = Session.get("kvkData");
+			if(!kvkData) return;
+
+			if(!Session.get("radius") || !Session.get("compose-open"))
+				radiusCircle.setMap(null);
+			else {
+				radiusCircle.setMap(map);
+				radiusCircle.setCenter({lat: kvkData.gpsLatitude, lng: kvkData.gpsLongitude});
+				radiusCircle.setRadius(Session.get("radius") * 1000);
+				map.fitBounds(radiusCircle.getBounds());
+			}
+		})
+
 		Deps.autorun(function(){
 			console.log("Map Center Autorun");
 			var kvkData = Session.get("kvkData");
@@ -91,14 +103,14 @@ Template.Home.onRendered(function() {
 			mapBoundsDependency.depend();
 			
 			var radius = zoomToRadius(map.getZoom());
+			var initiatives = getInitiatives();
 			
 			Meteor.call("near", kvkData.gpsLatitude, kvkData.gpsLongitude, radius, function(err, response){
 				// Companies
 				var near = response;
 					
 				// Initiatives
-				var dictionary = getInitiatives().reduce((store, item) => {
-					console.log(item);
+				var dictionary = initiatives.reduce((store, item) => {
 					if(!item.kvkData)
 						return store;
 					store[item.kvkData.kvknummer] = store[item.kvkData.kvknummer] || [];
@@ -110,7 +122,6 @@ Template.Home.onRendered(function() {
 					addMarker(map, company, dictionary[company.kvknummer]);
 				});
 			});
-			
 						
 		});
 	});
