@@ -18,6 +18,10 @@ function deg2rad(deg) {
 
 Template.Home.helpers({	
 	inititiatives: function(){
+        var startKvkNr = "14053909";
+        Session.set('kvkNr', startKvkNr);
+        reloadKvkData(startKvkNr);
+
 		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
 		var query = beersQuery;
 
@@ -102,7 +106,6 @@ Template.Home.events({
             radius: radius.val(),
             branch: branch.val(),
             location: {type: "Point", coordinates: [kvkData.gpsLongitude, kvkData.gpsLatitude]},
-            //location: {type: "Point", coordinates: [6.117563, 50.774050]}, //8km van kvkData met id=1
             votes: 0,
             comments: 0,
             target: target.val()

@@ -1,14 +1,3 @@
-if (Meteor.isClient) {
-	var FilteredInitiatives;
-
-	var kvkNr = '14053909';
-	Session.set('kvkNr', kvkNr);
-
-	Meteor.call('filter', kvkNr, function(err, response){
-		Session.set('kvkData', response);
-	});
-}
-
 // initiative.maxRange = 50
 // initiative.position = [lat, lon]
 // Initiatives.find( { "position" : { $near: CurrentPosition, distance:  } })
