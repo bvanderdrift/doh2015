@@ -103,14 +103,14 @@ Template.Home.onRendered(function() {
 			mapBoundsDependency.depend();
 			
 			var radius = zoomToRadius(map.getZoom());
+			var initiatives = getInitiatives();
 			
 			Meteor.call("near", kvkData.gpsLatitude, kvkData.gpsLongitude, radius, function(err, response){
 				// Companies
 				var near = response;
 					
 				// Initiatives
-				var dictionary = getInitiatives().reduce((store, item) => {
-					console.log(item);
+				var dictionary = initiatives.reduce((store, item) => {
 					if(!item.kvkData)
 						return store;
 					store[item.kvkData.kvknummer] = store[item.kvkData.kvknummer] || [];
