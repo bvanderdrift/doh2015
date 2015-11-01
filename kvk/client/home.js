@@ -86,7 +86,7 @@ Template.Initiative.events({
 })
 
 Template.Home.events({
-    "submit form": function (evt) {
+    "submit form#new-initiative": function (evt) {
         var title = $(evt.target).find(".input-title")
         var descr = $(evt.target).find(".input-description")
         var branch = $(evt.target).find(".input-branch")
