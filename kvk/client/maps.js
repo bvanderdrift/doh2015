@@ -21,5 +21,21 @@ Template.Home.onRendered(function() {
 			var kvkData = Session.get("kvkData");
 			var myLatlng = new google.maps.LatLng(kvkData.gpsLatitude, kvkData.gpsLongitude);
 			map.setCenter(myLatlng);
+			
+			getInitiatives().fetch().forEach(function(el) {
+
+			  var infowindow = new google.maps.InfoWindow({
+			    content: el.title
+			  });
+
+			  var marker = new google.maps.Marker({
+			    position: {lat: el.location.coordinates[0], lng: el.location.coordinates[1]},
+			  	map: map
+			  });
+
+			  marker.addListener('click', function() {
+			  	infowindow.open(map, marker);
+			  });
+			})
 		});
 	});

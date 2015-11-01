@@ -16,6 +16,22 @@ function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
 
+getInitiatives = function() {
+        var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
+        var query = beersQuery;
+
+        if(Session.get("search")) {
+            var r = new RegExp(".*"+Session.get("search")+".*", "i")
+            query["$or"] = [
+                {"title": r},
+                {"description": r},
+                {"branch": r},
+            ];      
+        }
+
+        return Initiatives.find(query, { sort: { date: -1 } });
+    }
+
 Template.Home.onCreated(function() {
     var startKvkNr = "14053909";
         Session.set('kvkNr', startKvkNr);
@@ -26,22 +42,7 @@ Template.Home.helpers({
     businessName: function() {
         return Session.get("kvkData").businessName;
     },
-	initiatives: function(){
-		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
-		var query = beersQuery;
-
-		if(Session.get("search")) {
-			var r = new RegExp(".*"+Session.get("search")+".*", "i")
-			query["$or"] = [
-				{"title": r},
-				{"description": r},
-				{"branch": r},
-			];		
-		}
-
-		return Initiatives.find(query, { sort: { date: -1 } });
-	},
-	
+	initiatives: getInitiatives,
 	composeOpen: function(){
 		return Session.get("compose-open");
 	}
