@@ -23,7 +23,7 @@ getInitiatives = function() {
             }
         });
 
-        return Selection.find({});
+        return Selection.find({}, {sort: { comments: -1 }});
     }
 
 Template.Home.onCreated(function() {
@@ -79,7 +79,8 @@ Template.Initiative.events({
         var descr = $(evt.target).find(".input-description");
         var userId = Session.get("kvkData").businessName;
         Initiatives.update({_id: this._id}, {
-            $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}}
+            $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}},
+            $inc : {"comments":  1}
         }, false);
 
         descr.val("");
