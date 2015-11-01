@@ -62,24 +62,25 @@ Template.Home.onRendered(function() {
 		map.addListener("center_changed", function(){ mapBoundsDependency.changed(); });
 		map.addListener("zoom_changed", function(){ mapBoundsDependency.changed(); });
 
-		var radiusCircle;
+		var radiusCircle = new google.maps.Circle({
+			strokeColor: '#083764',
+			strokeOpacity: 0.8,
+			strokeWeight: 2,
+			fillColor: '#000000',
+			fillOpacity: 0.35,
+			map: map,
+		});
+
 		Deps.autorun(function(){
 			var kvkData = Session.get("kvkData");
 			if(!kvkData) return;
 
-			if(!Session.get("radius"))
-				radiusCircle && radiusCircle.setMap(null);
+			if(!Session.get("radius") || !Session.get("compose-open"))
+				radiusCircle.setMap(null);
 			else {
-				var radiusCircle = new google.maps.Circle({
-					strokeColor: '#083764',
-					strokeOpacity: 0.8,
-					strokeWeight: 2,
-					fillColor: '#000000',
-					fillOpacity: 0.35,
-					map: map,
-					center: {lat: kvkData.gpsLatitude, lng: kvkData.gpsLongitude},
-					radius: Session.get("radius") || 10000
-				});
+				radiusCircle.setMap(map);
+				radiusCircle.setCenter({lat: kvkData.gpsLatitude, lng: kvkData.gpsLongitude});
+				radiusCircle.setRadius(Session.get("radius"));
 				map.fitBounds(radiusCircle.getBounds());
 			}
 		})
@@ -121,7 +122,6 @@ Template.Home.onRendered(function() {
 					addMarker(map, company, dictionary[company.kvknummer]);
 				});
 			});
-			
 						
 		});
 	});
