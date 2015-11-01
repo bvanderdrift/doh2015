@@ -6,44 +6,33 @@ function zoomToRadius(zoomLevel){
 	return Math.pow((14-zoomLevel), 2)
 }
 
-var mapBoundsDependency = new Deps.Dependency;
-var markerDirectory = {};
-
-
-function addMarker(map, company, initiatives) {
-	var el = initiatives && initiatives[0];
-	
-	if(!markerDirectory[company.kvknummer]) {
-		var infowindow = new google.maps.InfoWindow({ content: (el ? el.title + " - " : "") + company.businessName });
-
-		var marker = markerDirectory[company.kvknummer] = new google.maps.Marker({
-			position: {lat: company.gpsLatitude, lng: company.gpsLongitude},
-			map: map,
-			icon: blueIcon
-		});
-
-		marker.addListener('click', function() {
-			infowindow.open(map, marker);
-		});
-	}
-
-	if(!initiatives) return;
-	if(initiatives.length > 0) {
-		markerDirectory[company.kvknummer].setIcon('marker_yellow.png');
-	}
-}
-
 Template.Home.onRendered(function() {
 
-		// Deps.autorun(function() {
-		// 	var kvkData = Session.get("kvkData");
-		// 	var myLatlng = new google.maps.LatLng(kvkData.gpsLatitude, kvkData.gpsLongitude);
-		// 	var mapOptions = {
-		// 	  zoom: 13,
-		// 	  center: myLatlng,
-		// 	  mapTypeId: google.maps.MapTypeId.ROADMAP
-		// 	};
-		// });
+	var mapBoundsDependency = new Deps.Dependency;
+	var markerDirectory = {};
+	
+	function addMarker(map, company, initiatives) {
+		var el = initiatives && initiatives[0];
+		
+		if(!markerDirectory[company.kvknummer]) {
+			var infowindow = new google.maps.InfoWindow({ content: (el ? el.title + " - " : "") + company.businessName });
+	
+			var marker = markerDirectory[company.kvknummer] = new google.maps.Marker({
+				position: {lat: company.gpsLatitude, lng: company.gpsLongitude},
+				map: map,
+				icon: blueIcon
+			});
+	
+			marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			});
+		}
+	
+		if(!initiatives) return;
+		if(initiatives.length > 0) {
+			markerDirectory[company.kvknummer].setIcon('marker_yellow.png');
+		}
+	}
 
 	blueIcon = {
 	    url: 'marker_blue.png',
@@ -72,6 +61,28 @@ Template.Home.onRendered(function() {
 		var map = new google.maps.Map(document.getElementById("home-map"), mapOptions);
 		map.addListener("center_changed", function(){ mapBoundsDependency.changed(); });
 		map.addListener("zoom_changed", function(){ mapBoundsDependency.changed(); });
+
+		var radiusCircle;
+		Deps.autorun(function(){
+			var kvkData = Session.get("kvkData");
+			if(!kvkData) return;
+
+			if(!Session.get("radius"))
+				radiusCircle && radiusCircle.setMap(null);
+			else {
+				var radiusCircle = new google.maps.Circle({
+					strokeColor: '#083764',
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: '#000000',
+					fillOpacity: 0.35,
+					map: map,
+					center: {lat: kvkData.gpsLatitude, lng: kvkData.gpsLongitude},
+					radius: Session.get("radius") || 10000
+				});
+				map.fitBounds(radiusCircle.getBounds());
+			}
+		})
 
 		Deps.autorun(function(){
 			console.log("Map Center Autorun");
