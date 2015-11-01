@@ -16,15 +16,17 @@ function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
 
+Template.Home.onCreated(function() {
+    var startKvkNr = "14053909";
+        Session.set('kvkNr', startKvkNr);
+        reloadKvkData(startKvkNr);
+})
+
 Template.Home.helpers({	
     businessName: function() {
         return Session.get("kvkData").businessName;
     },
 	inititiatives: function(){
-        var startKvkNr = "14053909";
-        Session.set('kvkNr', startKvkNr);
-        reloadKvkData(startKvkNr);
-
 		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
 		var query = beersQuery;
 
