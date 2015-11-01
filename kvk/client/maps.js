@@ -15,7 +15,6 @@ Template.Home.onRendered(function() {
 		var el = initiatives && initiatives[0];
 		
 		if(!markerDirectory[company.kvknummer]) {
-			var infowindow = new google.maps.InfoWindow({ content: (el ? el.title + " - " : "") + company.businessName });
 			var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_blue_selected.png' : '/marker_blue.png';
 
 			var marker = markerDirectory[company.kvknummer] = new google.maps.Marker({
@@ -23,11 +22,14 @@ Template.Home.onRendered(function() {
 				map: map,
 				icon: ico
 			});
-
-			marker.addListener('click', function() {
-				infowindow.open(map, marker);
-			});
 		}
+
+		var infowindow = new google.maps.InfoWindow({ content: (el ? el.title + " - " : "") + company.businessName });
+
+		google.maps.event.clearListeners(markerDirectory[company.kvknummer], 'click');
+		markerDirectory[company.kvknummer].addListener('click', function() {
+			infowindow.open(map, markerDirectory[company.kvknummer]);
+		});
 
 		if(!initiatives) {
 			var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_blue_selected.png' : '/marker_blue.png';
