@@ -32,7 +32,7 @@ Template.Home.onCreated(function() {
 
 Template.Home.helpers({	
     businessName: function() {
-        return Session.get("kvkData").businessName;
+        return Session.get("kvkData") ? Session.get("kvkData").businessName : "Loading...";
     },
 	initiatives: getInitiatives,
 	composeOpen: function(){

@@ -19,6 +19,8 @@ Template.Home.onRendered(function() {
 
 		Deps.autorun(function() {
 			var kvkData = Session.get("kvkData");
+			if(!kvkData) return;
+			
 			var myLatlng = new google.maps.LatLng(kvkData.gpsLatitude, kvkData.gpsLongitude);
 			map.setCenter(myLatlng);
 			
