@@ -150,5 +150,8 @@ Template.Home.events({
     },
     "click .compose > a": function (evt) {
         Session.set("compose-open", !Session.get("compose-open"));
-    }
+    },
+		"keyup .input-radius": function (evt){
+			Session.set("radius", parseInt(evt.target.value));
+		}
 })

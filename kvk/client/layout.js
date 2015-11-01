@@ -6,6 +6,7 @@ Template.ApplicationLayout.helpers({
 
 Template.ApplicationLayout.onDestroyed = function(){
 	Session.set("search", null);
+	Session.set("radius", null);
 }
 
 Template.ApplicationLayout.events({
