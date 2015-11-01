@@ -1,3 +1,17 @@
 #contact-info{
     list-style-type: none;
 }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 768px) {
+	.row.flex {
+		display: flex;
+	}
+	.md-flex {
+		padding-right:0; 
+		display:flex;
+	}
+}
+.md-flex .panel {
+		width:100%
+}
