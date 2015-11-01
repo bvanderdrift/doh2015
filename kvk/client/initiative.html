@@ -50,6 +50,10 @@
                     <span class="mdi-action-thumb-up"></span> Endorse</a>
                 <a href="javascript:void(0)" id="rejectButton" style="margin-top:5px; margin-bottom: 0;" class="btn btn-danger">
                     <span class="mdi-action-thumb-down"></span> Reject</a>
+                {{#if goalReached}}
+                    <a href="http://doodle.com" target="_blank" id="meetingButton" style="margin-top:5px; margin-bottom: 0;" class="btn btn-info right">
+                    <span class="mdi-action-event"></span> Plan a meeting!</a>
+                {{/if}}
 
                 <hr />
             </div>
