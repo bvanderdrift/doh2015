@@ -53,16 +53,20 @@ filteredInitiativesQuery = function (kvkData) {
 
 if (Meteor.isServer) {
 	Meteor.startup(function () {
-	    Meteor.methods({
-	    	filter: function(kvkNr){
+		Meteor.methods({
+			filter: function(kvkNr){
 				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/Companies/byKvkNumber/" + kvkNr).data;
 
 				return kvkData[0]; //Always one element since kvkNr is unique
 			},
 			search: function(name) {
-			   var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?tradename="+escape(name)).data;
-			   return kvkData[0];
+				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?tradename="+escape(name)).data;
+				return kvkData[0];
+			},
+			near: function(lat, lon, radius) {
+				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?latitude="+lat+"&longitude"+lon+"&radius="+radius);
+				return kvkData.data;
 			}
-	    });
+		});
 	});
 }
