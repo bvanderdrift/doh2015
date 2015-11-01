@@ -117,7 +117,7 @@ Template.Home.onRendered(function() {
 			// Re-run upon bounds change			
 			mapBoundsDependency.depend();
 			
-			var radius = zoomToRadius(map.getZoom());
+			var radius = 50000;
 			var initiatives = getInitiatives();
 			
 			Meteor.call("near", kvkData.gpsLatitude, kvkData.gpsLongitude, radius, function(err, response){

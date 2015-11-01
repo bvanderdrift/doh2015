@@ -68,7 +68,7 @@ if (Meteor.isServer) {
 				return bsiData;
 			},
 			near: function(lat, lon, radius) {
-				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?latitude="+lat+"&longitude"+lon+"&radius="+radius);
+				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies/byGps?latitude="+lat+"&longitude="+lon+"&radius="+radius);
 				return kvkData.data;
 			}
 		});
