@@ -60,8 +60,6 @@ if (Meteor.isServer) {
 	var cache = {};
 	
 	Meteor.startup(function () {
-		Companies._ensureIndex({location:"2dsphere"});
-		
 		Meteor.methods({
 			filter: function(kvkNr){
 				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/Companies/byKvkNumber/" + kvkNr).data;
@@ -80,20 +78,7 @@ if (Meteor.isServer) {
 			near: function(lat, lon, radius, offset) {
 				if(typeof offset != 'number')
 					offset = 0;
-			
-				var already = Companies.find({ location: {
-					$near:{
-						$geometry:{
-							type: "Point",
-							coordinates: [lon, lat]
-						},
-						$maxDistance: radius,
-						$minDistance: 0
-					}
-				}});
 				
-				offset = already.count();
-
 				var key = [lat, lon, radius, offset].join(",");
 				if(!cache[key]){
 					var url = "http://kvkhackathon.azurewebsites.net/api/Companies/byGps?latitude="+lat+"&longitude="+lon+"&radius="+radius+"&offset="+offset;
@@ -103,7 +88,7 @@ if (Meteor.isServer) {
 					// if(kvkData && kvkData.length > 0 && offset < 150) {
 					// 	console.log("Next page for ", lat, lon, radius, offset);
 					// 	Meteor.call("near", lat, lon, radius, (offset || 0) + kvkData.length);
-					// }
+					// }				
 					kvkData.forEach(insertKvk);
 					cache[key] = kvkData;
 				}	
