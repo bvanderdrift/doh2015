@@ -111,6 +111,7 @@ Template.Home.events({
         var title = $(evt.target).find(".input-title")
         var descr = $(evt.target).find(".input-description")
         var branch = $(evt.target).find(".input-branch")
+        var selectedBranch = $(evt.target).find(".input-branch option:selected")
         var radius = $(evt.target).find(".input-radius")
         var target = $(evt.target).find(".input-target")
 
@@ -121,7 +122,8 @@ Template.Home.events({
             description: descr.val(),
             date: new Date(),
             radius: radius.val(),
-            branch: branch.val(),
+            branchID: branch.val(),
+            branchName: selectedBranch.text(),
             location: {type: "Point", coordinates: [kvkData.gpsLongitude, kvkData.gpsLatitude]},
             votes: 0,
             comments: 0,
