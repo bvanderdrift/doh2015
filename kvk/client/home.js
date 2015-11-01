@@ -77,7 +77,7 @@ Template.Initiative.events({
     },
     "submit form": function (evt) {
         var descr = $(evt.target).find(".input-description");
-        var userId = 0;
+        var userId = Session.get("kvkData").businessName;
         Initiatives.update({_id: this._id}, {
             $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}}
         }, false);
@@ -108,7 +108,9 @@ Template.Home.events({
             location: {type: "Point", coordinates: [kvkData.gpsLongitude, kvkData.gpsLatitude]},
             votes: 0,
             comments: 0,
-            target: target.val()
+            target: target.val(),
+            kvkData: kvkData,
+            phone: "+316" + kvkData.kvknummer.substring(0, 8)
         })
 
         title.val("")

@@ -22,28 +22,18 @@
                     <div class="panel-body">
                         <table class="table" style="margin-bottom: 0">
                             <tr>
-                                <td><strong>Name</strong></td>
-                                <td>Jane</td>
-                            </tr>
-                            <tr>
                                 <td><strong>Company</strong></td>
-                                <td>Big Beer Factory</td>
+                                <td>{{kvkData.businessName}}</td>
                             </tr>
                             <tr>
-                                <td><strong>Email</strong></td>
-                                <td>asdfasdf@gmail.com</td>
+                                <td><strong>Website</strong></td>
+                                <td>{{kvkData.website}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Phone</strong></td>
-                                <td>0234023423</td>
+                                <td>{{phone}}</td>
                             </tr>
                         </table>
-                    <!--     <ul id="contact-info">
-                            <li><span class="mdi-action-account-box"></span> Name:</li>
-                            <li><span class="mdi-action-work"></span> Company:</li>
-                            <li><span class="mdi-communication-email"></span> Email</li>
-                            <li><span class="mdi-communication-phone"></span> Phone:</li>
-                        </ul> -->
                     </div>
                 </div>
             </div>
@@ -103,7 +93,7 @@
                                     </div>
                                     <div class="row-content">
                                         <div class="least-content">Posted {{fromNow date}}</div>
-                                        <h6>Alice {{userId}}</h6>
+                                        <h6>{{userId}}</h6>
 
                                         <p class="list-group-item-text">{{content}}</p>
                                     </div>
