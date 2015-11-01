@@ -52,47 +52,24 @@ filteredInitiativesQuery = function (kvkData) {
 }
 
 if (Meteor.isServer) {
-	function insertKvk(data){
-		data.location = [data.gpsLongitude, data.gpsLatitude];
-		Companies.update({ kvknummer: data.kvknummer }, data, { upsert: true })
-	}
-	
-	var cache = {};
-	
 	Meteor.startup(function () {
 		Meteor.methods({
 			filter: function(kvkNr){
 				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/Companies/byKvkNumber/" + kvkNr).data;
-				kvkData.forEach(insertKvk);
+
 				return kvkData[0]; //Always one element since kvkNr is unique
 			},
 			search: function(name) {
-				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?tradename="+escape(name)).data;
-				kvkData.forEach(insertKvk);
-				return kvkData[0];
+			    var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?tradename="+escape(name)).data;
+			    return kvkData[0];
 			},
 			getBsiData: function(){
 				var bsiData = JSON.parse(Assets.getText("bsiData.json"));
 				return bsiData;
 			},
-			near: function(lat, lon, radius, offset) {
-				if(typeof offset != 'number')
-					offset = 0;
-				
-				var key = [lat, lon, radius, offset].join(",");
-				if(!cache[key]){
-					var url = "http://kvkhackathon.azurewebsites.net/api/Companies/byGps?latitude="+lat+"&longitude="+lon+"&radius="+radius+"&offset="+offset;
-					var response = Meteor.http.call("GET", url);
-					var kvkData = response.data;
-					console.log("Found ", kvkData.length, "companies near", lat, lon, radius, offset, url);
-					// if(kvkData && kvkData.length > 0 && offset < 150) {
-					// 	console.log("Next page for ", lat, lon, radius, offset);
-					// 	Meteor.call("near", lat, lon, radius, (offset || 0) + kvkData.length);
-					// }				
-					kvkData.forEach(insertKvk);
-					cache[key] = kvkData;
-				}	
-				return cache[key];
+			near: function(lat, lon, radius) {
+				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?latitude="+lat+"&longitude"+lon+"&radius="+radius);
+				return kvkData.data;
 			}
 		});
 	});

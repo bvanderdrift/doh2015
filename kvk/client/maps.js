@@ -3,7 +3,7 @@ function radiusToZoom(radius){
 }
 
 function zoomToRadius(zoomLevel){
-	return Math.pow((14-zoomLevel), 10)*Math.LN2*1000
+	return Math.pow((14-zoomLevel), 2)
 }
 
 Template.Home.onRendered(function() {
@@ -117,28 +117,25 @@ Template.Home.onRendered(function() {
 			// Re-run upon bounds change			
 			mapBoundsDependency.depend();
 			
+			var radius = zoomToRadius(map.getZoom());
 			var initiatives = getInitiatives();
 			
-			var meterPerPixel = 156543.03392 * Math.cos(map.getCenter().lat() * Math.PI / 180) / Math.pow(2, map.getZoom());
-			var radius = meterPerPixel * 400;
-			
-			Meteor.call("near", map.getCenter().lat(), map.getCenter().lng(), radius);
-			var near = Companies.find({ location: {
-				$near: [map.getCenter().lng(), map.getCenter().lat()],
-				$maxDistance: radius
-			}});
-			
-			// Initiatives
-			var dictionary = initiatives.reduce((store, item) => {
-				if(!item.kvkData)
+			Meteor.call("near", kvkData.gpsLatitude, kvkData.gpsLongitude, radius, function(err, response){
+				// Companies
+				var near = response;
+					
+				// Initiatives
+				var dictionary = initiatives.reduce((store, item) => {
+					if(!item.kvkData)
+						return store;
+					store[item.kvkData.kvknummer] = store[item.kvkData.kvknummer] || [];
+					store[item.kvkData.kvknummer].push(item);
 					return store;
-				store[item.kvkData.kvknummer] = store[item.kvkData.kvknummer] || [];
-				store[item.kvkData.kvknummer].push(item);
-				return store;
-			}, {});
-			
-			near.forEach(company => {
-				addMarker(map, company, dictionary[company.kvknummer]);
+				}, {});
+				
+				near.forEach(company => {
+					addMarker(map, company, dictionary[company.kvknummer]);
+				});
 			});
 						
 		});
