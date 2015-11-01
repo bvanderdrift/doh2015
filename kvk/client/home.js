@@ -17,6 +17,9 @@ function deg2rad(deg) {
 }
 
 Template.Home.helpers({	
+    businessName: function() {
+        return Session.get("kvkData").businessName;
+    },
 	inititiatives: function(){
         var startKvkNr = "14053909";
         Session.set('kvkNr', startKvkNr);
