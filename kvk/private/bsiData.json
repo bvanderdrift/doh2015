@@ -169,7 +169,11 @@
   },
   {
     "ID":64,
-    "Name":"Financi‰le instellingen (geen verzekeringen en pensioenfondsen)"
+    "Name":"Financiele instellingen (geen verzekeringen en pensioenfondsen)"
+  },
+  {
+    "ID":70,
+    "Name":"Financiële Holdings"
   },
   {
     "ID":71,
