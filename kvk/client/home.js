@@ -26,7 +26,7 @@ Template.Home.helpers({
     businessName: function() {
         return Session.get("kvkData").businessName;
     },
-	inititiatives: function(){
+	initiatives: function(){
 		var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
 		var query = beersQuery;
 
