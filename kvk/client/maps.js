@@ -16,40 +16,52 @@ Template.Home.onRendered(function() {
 		
 		if(!markerDirectory[company.kvknummer]) {
 			var infowindow = new google.maps.InfoWindow({ content: (el ? el.title + " - " : "") + company.businessName });
-	
+			var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_blue_selected.png' : '/marker_blue.png';
+
 			var marker = markerDirectory[company.kvknummer] = new google.maps.Marker({
 				position: {lat: company.gpsLatitude, lng: company.gpsLongitude},
 				map: map,
-				icon: blueIcon
+				icon: ico
 			});
-	
+
 			marker.addListener('click', function() {
 				infowindow.open(map, marker);
 			});
 		}
-	
+
+		var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_blue_selected.png' : '/marker_blue.png';
+		markerDirectory[company.kvknummer].setIcon(ico);
+
 		if(!initiatives) return;
+
 		if(initiatives.length > 0) {
-			markerDirectory[company.kvknummer].setIcon('marker_yellow.png');
+			// var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_yellow_selected.png' : '/marker_yellow.png';
+			markerDirectory[company.kvknummer].setIcon('/marker_yellow.png');
 		}
 	}
 
-	blueIcon = {
-	    url: 'marker_blue.png',
-	    // This marker is 20 pixels wide by 32 pixels high.
+	blueSelectedIcon = {
+	    url: '/marker_blue_selected.png',
 	    size: new google.maps.Size(20, 20),
-	    // The origin for this image is (0, 0).
 	    origin: new google.maps.Point(0, 0),
-	    // The anchor for this image is the base of the flagpole at (0, 32).
 	    anchor: new google.maps.Point(10, 10)
 	  };
-	 yellowIcon = {
-	    url: 'marker_yellow.png',
-	    // This marker is 20 pixels wide by 32 pixels high.
+	 blueIcon = {
+	    url: '/marker_blue.png',
 	    size: new google.maps.Size(20, 20),
-	    // The origin for this image is (0, 0).
 	    origin: new google.maps.Point(0, 0),
-	    // The anchor for this image is the base of the flagpole at (0, 32).
+	    anchor: new google.maps.Point(10, 10)
+	  };
+	yellowIcon = {
+	    url: '/marker_yellow.png',
+	    size: new google.maps.Size(20, 20),
+	    origin: new google.maps.Point(0, 0),
+	    anchor: new google.maps.Point(10, 10)
+	  };
+	 yellowSelectedIcon = {
+	    url: '/marker_yellow_selected.png',
+	    size: new google.maps.Size(20, 20),
+	    origin: new google.maps.Point(0, 0),
 	    anchor: new google.maps.Point(10, 10)
 	  };
 
