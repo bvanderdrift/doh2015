@@ -1,6 +1,7 @@
 getInitiatives = function() {
-        var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
-        var query = beersQuery;
+        if(!Session.get("kvkData")) return;
+        // var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
+        var query = {};
 
         if(Session.get("search")) {
             var r = new RegExp(".*"+Session.get("search")+".*", "i")
@@ -15,6 +16,7 @@ getInitiatives = function() {
 
         Meteor.call('emptySelection', function(err, smthng){ });
         cursor.forEach(function(initiative){
+
             if(InitiativePredicate(Session.get("kvkData"), initiative)){
                 delete initiative._id;
                 Selection.insert(initiative);

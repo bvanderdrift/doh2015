@@ -19,25 +19,25 @@ Template.Home.onRendered(function() {
 
 		Deps.autorun(function() {
 			var kvkData = Session.get("kvkData");
-			if(!kvkData) return;
+			if(kvkData == undefined) return;
 			
 			var myLatlng = new google.maps.LatLng(kvkData.gpsLatitude, kvkData.gpsLongitude);
 			map.setCenter(myLatlng);
 			
-			getInitiatives().fetch().forEach(function(el) {
+			// getInitiatives().fetch().forEach(function(el) {
 
-			  var infowindow = new google.maps.InfoWindow({
-			    content: el.title
-			  });
+			//   var infowindow = new google.maps.InfoWindow({
+			//     content: el.title
+			//   });
 
-			  var marker = new google.maps.Marker({
-			    position: {lat: el.location.coordinates[0], lng: el.location.coordinates[1]},
-			  	map: map
-			  });
+			//   var marker = new google.maps.Marker({
+			//     position: {lat: el.location.coordinates[0], lng: el.location.coordinates[1]},
+			//   	map: map
+			//   });
 
-			  marker.addListener('click', function() {
-			  	infowindow.open(map, marker);
-			  });
-			})
+			//   marker.addListener('click', function() {
+			//   	infowindow.open(map, marker);
+			//   });
+			// })
 		});
 	});
