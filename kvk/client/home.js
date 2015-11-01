@@ -12,7 +12,8 @@ Meteor.startup(function(){
 })
 
 getInitiatives = function() {
-        if(!Session.get("kvkData")) return;
+        var kvkData = Session.get("kvkData");
+        if(!kvkData) return;
 
         var query = {};
 
@@ -25,11 +26,20 @@ getInitiatives = function() {
             ];      
         }
 
+        query["$where"] = function(){
+            if(this.branchID == -1) return true;
+            if(this.kvkData && kvkData.kvknummer == this.kvkData.kvknummer) return true;
+            
+            return kvkData.mainActivitySbiCode.toString().substring(0,2).indexOf(this.branchID) > -1;
+        };
+
 				initiativeChange.depend();
-        return Initiatives.find(query, { sort: { votes: -1 } }).fetch().filter(i => InitiativePredicate(Session.get("kvkData"), i))
+        return Initiatives.find(query, { sort: { votes: -1 } }).fetch().filter(i => InitiativePredicate(kvkData, i))
     }
 
 Template.Home.onCreated(function() {
+    if(Session.get("kvkData")) return;
+    
     var startKvkNr = "14053909";
         Session.set('kvkNr', startKvkNr);
         reloadKvkData(startKvkNr);
