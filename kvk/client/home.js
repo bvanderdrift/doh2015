@@ -1,22 +1,17 @@
-Template.Home.helpers({	
-	inititiatives: function(){
-        var startKvkNr = "14053909";
-        Session.set('kvkNr', startKvkNr);
-        reloadKvkData(startKvkNr);
+getInitiatives = function() {
+        var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
+        var query = beersQuery;
 
-		//var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
-		var query = {};//beersQuery;
+        if(Session.get("search")) {
+            var r = new RegExp(".*"+Session.get("search")+".*", "i")
+            query["$or"] = [
+                {"title": r},
+                {"description": r},
+                {"branch": r},
+            ];      
+        }
 
-		if(Session.get("search")) {
-			var r = new RegExp(".*"+Session.get("search")+".*", "i")
-			query["$or"] = [
-				{"title": r},
-				{"description": r},
-				{"branch": r},
-			];		
-		}
-
-		var cursor = Initiatives.find(query, { sort: { date: -1 } });
+        var cursor = Initiatives.find(query, { sort: { date: -1 } });
 
         Meteor.call('emptySelection', function(err, smthng){ });
         cursor.forEach(function(initiative){
@@ -27,8 +22,19 @@ Template.Home.helpers({
         });
 
         return Selection.find({});
+    }
+
+Template.Home.onCreated(function() {
+    var startKvkNr = "14053909";
+        Session.set('kvkNr', startKvkNr);
+        reloadKvkData(startKvkNr);
+})
+
+Template.Home.helpers({	
+    businessName: function() {
+        return Session.get("kvkData").businessName;
     },
-	
+	initiatives: getInitiatives,
 	composeOpen: function(){
 		return Session.get("compose-open");
 	}
