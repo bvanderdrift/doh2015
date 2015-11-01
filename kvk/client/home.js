@@ -22,7 +22,7 @@ getInitiatives = function() {
         }
 
 				initiativeChange.depend();
-        return Initiatives.find(query, { sort: { date: -1 } }).fetch().filter(i => InitiativePredicate(Session.get("kvkData"), i));
+        return Initiatives.find(query, { sort: { votes: -1 } }).fetch().filter(i => InitiativePredicate(Session.get("kvkData"), i))
     }
 
 Template.Home.onCreated(function() {
@@ -64,6 +64,13 @@ Template.Initiative.events({
         Initiatives.update({_id: this._id}, {
             $addToSet: {"votedUsers": thisUserId}
         }, false);
+
+        var temp = Initiatives.findOne({_id:this._id}).votedUsers.length
+
+        Initiatives.update({_id: this._id}, {
+            $set: {"votes": temp}
+        }, false);
+
     },
     "mouseenter .mdi-content-add": function (evt) {
         $(evt.target).removeClass("mdi-content-add").addClass("mdi-content-create");
@@ -78,7 +85,8 @@ Template.Initiative.events({
         var descr = $(evt.target).find(".input-description");
         var userId = Session.get("kvkData").businessName;
         Initiatives.update({_id: this._id}, {
-            $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}}
+            $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}},
+            $inc : { "comments" : 1}
         }, false);
 
         descr.val("");
