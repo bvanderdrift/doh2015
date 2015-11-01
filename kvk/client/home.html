@@ -28,23 +28,13 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Target Votes</label>
-							<div class="col-lg-10">
-								<div class="form-control-wrapper">
-									<input class="form-control input-target" />
-									<span class="material-input"></span>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="col-lg-2 control-label">Branch</label>
 							<div class="col-lg-10">
 								<select class="form-control input-branch">
-									<option value="Financiële holdings">Financiële holdings</option>
-									<option value="Vervaardiging van elektrische apparatuur">Vervaardiging van elektrische apparatuur</option>
-									<option value="Vervaardiging van meubels">Vervaardiging van meubels</option>
-									<option value="Groothandel in onderkleding">Groothandel in onderkleding</option>
-									<option value="Biotechnologisch speur- en ontwikkelingswerk">Biotechnologisch speur- en ontwikkelingswerk</option>
+									<option value="*">All Branches</option>
+								{{#each bsiData}}
+									<option value="{{ID}}">{{Name}}</option>
+								{{/each}}
 								</select>
 								<span class="material-input"></span>
 							</div>
@@ -54,6 +44,15 @@
 							<div class="col-lg-10">
 								<div class="form-control-wrapper">
 									<input class="form-control input-radius" />
+									<span class="material-input"></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Target Votes (optional)</label>
+							<div class="col-lg-10">
+								<div class="form-control-wrapper">
+									<input class="form-control input-target" />
 									<span class="material-input"></span>
 								</div>
 							</div>
@@ -85,7 +84,7 @@
 							<!-- <div class="least-content">23423</div> -->
 							<h4 class="list-group-item-heading"><a href="/initiative/{{_id}}">{{title}}</a></h4>
 							<p class="list-group-item-text">
-								<span class="label label-success">{{branch}}</span>
+								<span class="label label-success">{{branchName}}</span>
 					<span class="label label-success">{{radius}}km</span>
 					<span class="pull-right text-muted">Posted by <a href="http://www.kvk.nl/orderstraat/product-kiezen/?kvknummer={{kvkData.kvknummer}}" target="_blank">{{kvkData.businessName}}</a> {{fromNow date}}</span>
 				</p>

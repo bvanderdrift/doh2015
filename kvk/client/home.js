@@ -1,5 +1,9 @@
 initiativeChange = new Deps.Dependency;
 
+Meteor.call("getBsiData", function(err, response){
+    Session.set("bsiData", response);
+});
+
 Meteor.startup(function(){
 	Deps.autorun(function(){
 		Initiatives.find({}, { sort: { date: -1 } })
@@ -38,7 +42,10 @@ Template.Home.helpers({
 	initiatives: getInitiatives,
 	composeOpen: function(){
 		return Session.get("compose-open");
-	}
+	},
+    bsiData: function(){
+        return Session.get("bsiData");
+    }
 })
 
 Template.Initiative.helpers({
@@ -107,6 +114,7 @@ Template.Home.events({
         var title = $(evt.target).find(".input-title")
         var descr = $(evt.target).find(".input-description")
         var branch = $(evt.target).find(".input-branch")
+        var selectedBranch = $(evt.target).find(".input-branch option:selected")
         var radius = $(evt.target).find(".input-radius")
         var target = $(evt.target).find(".input-target")
 
@@ -117,7 +125,8 @@ Template.Home.events({
             description: descr.val(),
             date: new Date(),
             radius: radius.val(),
-            branch: branch.val(),
+            branchID: branch.val(),
+            branchName: selectedBranch.text(),
             location: {type: "Point", coordinates: [kvkData.gpsLongitude, kvkData.gpsLatitude]},
             votes: 0,
             comments: 0,
@@ -137,6 +146,7 @@ Template.Home.events({
     },
     "reset form": function () {
         Session.set("compose-open", false);
+				Session.set("radius", null);
     },
     "mouseenter .mdi-content-add": function (evt) {
         $(evt.target).removeClass("mdi-content-add").addClass("mdi-content-create");
@@ -146,5 +156,8 @@ Template.Home.events({
     },
     "click .compose > a": function (evt) {
         Session.set("compose-open", !Session.get("compose-open"));
-    }
+    },
+		"keyup .input-radius": function (evt){
+			Session.set("radius", parseInt(evt.target.value));
+		}
 })

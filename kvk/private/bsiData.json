@@ -1,0 +1,246 @@
+[
+  {
+    "ID":2,
+    "Name":"Bosbouw, exploitatie van bossen en dienstverlening voor de bosbouw"
+  },
+  {
+    "ID":6,
+    "Name":"Winning van aardolie en aardgas"
+  },
+  {
+    "ID":8,
+    "Name":"Winning van delfstoffen (geen olie en gas)"
+  },
+  {
+    "ID":9,
+    "Name":"Dienstverlening voor de winning van delfstoffen "
+  },
+  {
+    "ID":10,
+    "Name":"Vervaardiging van voedingsmiddelen"
+  },
+  {
+    "ID":12,
+    "Name":"Vervaardiging van tabaksproducten"
+  },
+  {
+    "ID":15,
+    "Name":"Vervaardiging van leer, lederwaren en schoenen"
+  },
+  {
+    "ID":16,
+    "Name":"Primaire houtbewerking en vervaardiging van artikelen van hout, kurk, riet en vlechtwerk ( geen meubels) "
+  },
+  {
+    "ID":17,
+    "Name":"Vervaardiging van papier, karton en papier- en kartonwaren "
+  },
+  {
+    "ID":18,
+    "Name":"Drukkerijen, reproductie van opgenomen media"
+  },
+  {
+    "ID":19,
+    "Name":"Vervaardiging van cokesovenproducten en aardolieverwerking"
+  },
+  {
+    "ID":20,
+    "Name":"Vervaardiging van chemische producten"
+  },
+  {
+    "ID":21,
+    "Name":"Vervaardiging van farmaceutische grondstoffen en producten"
+  },
+  {
+    "ID":22,
+    "Name":"Vervaardiging van producten van rubber en kunststof"
+  },
+  {
+    "ID":23,
+    "Name":"Vervaardiging van overige niet-metaalhoudende minerale producten"
+  },
+  {
+    "ID":24,
+    "Name":"Vervaardiging van metalen in primaire vorm"
+  },
+  {
+    "ID":25,
+    "Name":"Vervaardiging van producten van metaal (geen machines en apparaten)"
+  },
+  {
+    "ID":26,
+    "Name":"Vervaardiging van computers en van elektronische en optische apparatuur"
+  },
+  {
+    "ID":27,
+    "Name":"Vervaardiging van elektrische apparatuur"
+  },
+  {
+    "ID":28,
+    "Name":"Vervaardiging van overige machines en apparaten"
+  },
+  {
+    "ID":29,
+    "Name":"Vervaardiging van auto's, aanhangwagens en opleggers"
+  },
+  {
+    "ID":30,
+    "Name":"Vervaardiging van overige transportmiddelen"
+  },
+  {
+    "ID":31,
+    "Name":"Vervaardiging van meubels"
+  },
+  {
+    "ID":32,
+    "Name":"Vervaardiging van overige goederen"
+  },
+  {
+    "ID":33,
+    "Name":"Reparatie en installatie van machines en apparaten"
+  },
+  {
+    "ID":35,
+    "Name":"Productie en distributie van en handel in elektriciteit, aardgas, stoom en gekoelde lucht"
+  },
+  {
+    "ID":36,
+    "Name":"Winning en distributie van water"
+  },
+  {
+    "ID":37,
+    "Name":"Afvalwaterinzameling en -behandeling"
+  },
+  {
+    "ID":38,
+    "Name":"Afvalinzameling en -behandeling; voorbereiding tot recycling"
+  },
+  {
+    "ID":39,
+    "Name":"Sanering en overig afvalbeheer"
+  },
+  {
+    "ID":41,
+    "Name":"Algemene burgerlijke en utiliteitsbouw en projectontwikkeling"
+  },
+  {
+    "ID":42,
+    "Name":"Grond-, water- en wegenbouw (geen grondverzet) "
+  },
+  {
+    "ID":43,
+    "Name":"Gespecialiseerde werkzaamheden in de bouw"
+  },
+  {
+    "ID":46,
+    "Name":"Groothandel en handelsbemiddeling (niet in auto's en motorfietsen)"
+  },
+  {
+    "ID":47,
+    "Name":"Detailhandel (niet in auto's)"
+  },
+  {
+    "ID":50,
+    "Name":"Vervoer over water"
+  },
+  {
+    "ID":51,
+    "Name":"Luchtvaart"
+  },
+  {
+    "ID":56,
+    "Name":"Eet- en drinkgelegenheden"
+  },
+  {
+    "ID":58,
+    "Name":"Uitgeverijen"
+  },
+  {
+    "ID":59,
+    "Name":"Productie en distributie van films en televisieprogrammaïs; maken en uitgeven van geluidsopnamen"
+  },
+  {
+    "ID":60,
+    "Name":"Verzorgen en uitzenden van radio- en televisieprogramma's"
+  },
+  {
+    "ID":63,
+    "Name":"Dienstverlenende activiteiten op het gebied van informatie"
+  },
+  {
+    "ID":64,
+    "Name":"Financi‰le instellingen (geen verzekeringen en pensioenfondsen)"
+  },
+  {
+    "ID":71,
+    "Name":"Architecten, ingenieurs en technisch ontwerp en advies; keuring en controle"
+  },
+  {
+    "ID":75,
+    "Name":"Veterinaire dienstverlening"
+  },
+  {
+    "ID":77,
+    "Name":"Verhuur en lease van auto's, consumentenartikelen, machines en overige roerende goederen"
+  },
+  {
+    "ID":78,
+    "Name":"Arbeidsbemiddeling, uitzendbureaus en personeelsbeheer"
+  },
+  {
+    "ID":79,
+    "Name":"Reisbemiddeling, reisorganisatie, toeristische informatie en reserveringsbureaus"
+  },
+  {
+    "ID":81,
+    "Name":"Facility management, reiniging en landschapsverzorging"
+  },
+  {
+    "ID":84,
+    "Name":"Openbaar bestuur, overheidsdiensten en verplichte sociale verzekeringen"
+  },
+  {
+    "ID":85,
+    "Name":"Onderwijs"
+  },
+  {
+    "ID":86,
+    "Name":"Gezondheidszorg"
+  },
+  {
+    "ID":88,
+    "Name":"Maatschappelijke dienstverlening zonder overnachting"
+  },
+  {
+    "ID":90,
+    "Name":"Kunst"
+  },
+  {
+    "ID":92,
+    "Name":"Loterijen en kansspelen"
+  },
+  {
+    "ID":93,
+    "Name":"Sport en recreatie"
+  },
+  {
+    "ID":94,
+    "Name":"Levensbeschouwelijke en politieke organisaties, belangen- en ide‰le organisaties, hobbyclubsÿ"
+  },
+  {
+    "ID":95,
+    "Name":"Reparatie van computers en consumentenartikelen"
+  },
+  {
+    "ID":96,
+    "Name":"Wellness en overige dienstverlening; uitvaartbranche"
+  },
+  {
+    "ID":97,
+    "Name":"Huishoudens als werkgever van huishoudelijk personeel"
+  },
+  {
+    "ID":98,
+    "Name":"Niet-gespecificeerde productie van goederen en diensten door particuliere huishoudens voor eigen gebruik"
+  }
+]
