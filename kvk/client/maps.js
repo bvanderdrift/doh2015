@@ -1,7 +1,8 @@
 Template.Home.onRendered(function() {
-	var myLatlng = new google.maps.LatLng(-34.397, 150.644);
+	var kvkData = Session.get("kvkData");
+	var myLatlng = new google.maps.LatLng(kvkData.gpsLatitude, kvkData.gpsLongitude);
 	var mapOptions = {
-	  zoom: 8,
+	  zoom: 13,
 	  center: myLatlng,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
