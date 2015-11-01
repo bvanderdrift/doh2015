@@ -1,5 +1,9 @@
 initiativeChange = new Deps.Dependency;
 
+Meteor.call("getBsiData", function(err, response){
+    Session.set("bsiData", response);
+});
+
 Meteor.startup(function(){
 	Deps.autorun(function(){
 		Initiatives.find({}, { sort: { date: -1 } })
@@ -38,7 +42,10 @@ Template.Home.helpers({
 	initiatives: getInitiatives,
 	composeOpen: function(){
 		return Session.get("compose-open");
-	}
+	},
+    bsiData: function(){
+        return Session.get("bsiData");
+    }
 })
 
 Template.Initiative.helpers({
@@ -50,8 +57,11 @@ Template.Initiative.helpers({
             return 0;
         else if (this.votedUsers.length > this.target)
             return 100;
-        else
-            return this.target / this.votedUsers.length
+        else {
+            console.log("Target: " + this.target)
+            console.log("Votes: " + this.votedUsers.length)
+            return (this.votedUsers.length / this.target) * 100
+        }
     },
     composeOpen: function () {
         return Session.get("compose-comment-open");
@@ -60,7 +70,7 @@ Template.Initiative.helpers({
 
 Template.Initiative.events({
     "click #endorseButton": function (evt) {
-        thisUserId = 1;
+        thisUserId = Session.get("kvkData").kvknummer
         Initiatives.update({_id: this._id}, {
             $addToSet: {"votedUsers": thisUserId}
         }, false);
