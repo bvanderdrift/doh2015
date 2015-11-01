@@ -65,6 +65,9 @@ Template.Initiative.helpers({
     },
     composeOpen: function () {
         return Session.get("compose-comment-open");
+    },
+    goalReached: function(){
+        return this.votedUsers.length >= this.target;
     }
 })
 
