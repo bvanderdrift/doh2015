@@ -36,6 +36,7 @@ Template.Home.onRendered(function() {
 
 		if(initiatives.length > 0) {
 			// var ico = company.kvknummer == Session.get("kvkData").kvknummer ? '/marker_yellow_selected.png' : '/marker_yellow.png';
+			// console.log(ico)
 			markerDirectory[company.kvknummer].setIcon('/marker_yellow.png');
 		}
 	}
