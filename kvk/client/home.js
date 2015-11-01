@@ -28,6 +28,7 @@ getInitiatives = function() {
 
         query["$where"] = function(){
             if(this.branchID == -1) return true;
+            if(this.kvkData && kvkData.kvknummer == this.kvkData.kvknummer) return true;
             
             return kvkData.mainActivitySbiCode.toString().substring(0,2).indexOf(this.branchID) > -1;
         };
