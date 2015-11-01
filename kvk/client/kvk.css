@@ -96,3 +96,21 @@
 .list-group .list-group-separator:before {
   width: calc(100% - 150px);
 }
+
+a, a:hover, a:focus {
+    color: #083764;
+}
+
+#kvk-logo {
+  float:left;
+  margin: 10px 0 0 10px;
+  height: 40px;
+}
+
+@media (max-width: 1199px) {
+  #kvk-logo {
+    float:left;
+    height: 30px; 
+    margin: 10px 0 0 10px;
+  }
+}
