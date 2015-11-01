@@ -1,4 +1,4 @@
-* {
+*:not(.gm-style, .gm-style *) {
   transition: ease .2s;
 }
 
