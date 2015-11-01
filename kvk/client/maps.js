@@ -93,7 +93,7 @@ Template.Home.onRendered(function() {
 			else {
 				radiusCircle.setMap(map);
 				radiusCircle.setCenter({lat: kvkData.gpsLatitude, lng: kvkData.gpsLongitude});
-				radiusCircle.setRadius(Session.get("radius"));
+				radiusCircle.setRadius(Session.get("radius") * 1000);
 				map.fitBounds(radiusCircle.getBounds());
 			}
 		})
@@ -116,14 +116,14 @@ Template.Home.onRendered(function() {
 			mapBoundsDependency.depend();
 			
 			var radius = zoomToRadius(map.getZoom());
+			var initiatives = getInitiatives();
 			
 			Meteor.call("near", kvkData.gpsLatitude, kvkData.gpsLongitude, radius, function(err, response){
 				// Companies
 				var near = response;
 					
 				// Initiatives
-				var dictionary = getInitiatives().reduce((store, item) => {
-					console.log(item);
+				var dictionary = initiatives.reduce((store, item) => {
 					if(!item.kvkData)
 						return store;
 					store[item.kvkData.kvknummer] = store[item.kvkData.kvknummer] || [];
