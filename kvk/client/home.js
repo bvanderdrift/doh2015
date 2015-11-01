@@ -145,6 +145,7 @@ Template.Home.events({
     },
     "reset form": function () {
         Session.set("compose-open", false);
+				Session.set("radius", null);
     },
     "mouseenter .mdi-content-add": function (evt) {
         $(evt.target).removeClass("mdi-content-add").addClass("mdi-content-create");
@@ -154,5 +155,8 @@ Template.Home.events({
     },
     "click .compose > a": function (evt) {
         Session.set("compose-open", !Session.get("compose-open"));
-    }
+    },
+		"keyup .input-radius": function (evt){
+			Session.set("radius", parseInt(evt.target.value));
+		}
 })
