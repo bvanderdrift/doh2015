@@ -62,6 +62,10 @@ if (Meteor.isServer) {
 			search: function(name) {
 			   var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?tradename="+escape(name)).data;
 			   return kvkData[0];
+			},
+			getBsiData: function(){
+				var bsiData = JSON.parse(Assets.getText("bsiData.json"));
+				return bsiData;
 			}
 	    });
 	});

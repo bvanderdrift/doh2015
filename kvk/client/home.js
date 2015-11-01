@@ -1,5 +1,9 @@
 initiativeChange = new Deps.Dependency;
 
+Meteor.call("getBsiData", function(err, response){
+    Session.set("bsiData", response);
+});
+
 Meteor.startup(function(){
 	Deps.autorun(function(){
 		Initiatives.find({}, { sort: { date: -1 } })
@@ -38,7 +42,10 @@ Template.Home.helpers({
 	initiatives: getInitiatives,
 	composeOpen: function(){
 		return Session.get("compose-open");
-	}
+	},
+    bsiData: function(){
+        return Session.get("bsiData");
+    }
 })
 
 Template.Initiative.helpers({

@@ -40,11 +40,10 @@
 							<label class="col-lg-2 control-label">Branch</label>
 							<div class="col-lg-10">
 								<select class="form-control input-branch">
-									<option value="Financiële holdings">Financiële holdings</option>
-									<option value="Vervaardiging van elektrische apparatuur">Vervaardiging van elektrische apparatuur</option>
-									<option value="Vervaardiging van meubels">Vervaardiging van meubels</option>
-									<option value="Groothandel in onderkleding">Groothandel in onderkleding</option>
-									<option value="Biotechnologisch speur- en ontwikkelingswerk">Biotechnologisch speur- en ontwikkelingswerk</option>
+									<option value="*">All Branches</option>
+								{{#each bsiData}}
+									<option value="{{ID}}">{{Name}}</option>
+								{{/each}}
 								</select>
 								<span class="material-input"></span>
 							</div>
