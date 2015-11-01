@@ -1,5 +1,4 @@
 Initiatives = new Meteor.Collection("initiatives");
-Selection = new Meteor.Collection("selection");
 
 if (Meteor.isClient) {
 

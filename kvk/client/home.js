@@ -1,6 +1,15 @@
+initiativeChange = new Deps.Dependency;
+
+Meteor.startup(function(){
+	Deps.autorun(function(){
+		Initiatives.find({}, { sort: { date: -1 } })
+		initiativeChange.changed();
+	})	
+})
+
 getInitiatives = function() {
         if(!Session.get("kvkData")) return;
-        // var beersQuery = filteredInitiativesQuery(Session.get("kvkData"));
+
         var query = {};
 
         if(Session.get("search")) {
@@ -12,18 +21,8 @@ getInitiatives = function() {
             ];      
         }
 
-        var cursor = Initiatives.find(query, { sort: { date: -1 } });
-
-        Meteor.call('emptySelection', function(err, smthng){ });
-        cursor.forEach(function(initiative){
-
-            if(InitiativePredicate(Session.get("kvkData"), initiative)){
-                delete initiative._id;
-                Selection.insert(initiative);
-            }
-        });
-
-        return Selection.find({}, {sort: { comments: -1 }});
+				initiativeChange.depend();
+        return Initiatives.find(query, { sort: { date: -1 } }).fetch().filter(i => InitiativePredicate(Session.get("kvkData"), i));
     }
 
 Template.Home.onCreated(function() {
@@ -79,8 +78,7 @@ Template.Initiative.events({
         var descr = $(evt.target).find(".input-description");
         var userId = Session.get("kvkData").businessName;
         Initiatives.update({_id: this._id}, {
-            $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}},
-            $inc : {"comments":  1}
+            $addToSet: {"commentData": {"userId":userId, "date" : new Date(), "content" : descr.val()}}
         }, false);
 
         descr.val("");
