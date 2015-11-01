@@ -80,7 +80,7 @@ Template.Home.onRendered(function() {
 			else {
 				radiusCircle.setMap(map);
 				radiusCircle.setCenter({lat: kvkData.gpsLatitude, lng: kvkData.gpsLongitude});
-				radiusCircle.setRadius(Session.get("radius"));
+				radiusCircle.setRadius(Session.get("radius") * 1000);
 				map.fitBounds(radiusCircle.getBounds());
 			}
 		})
