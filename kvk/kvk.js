@@ -1,4 +1,5 @@
 Initiatives = new Meteor.Collection("initiatives");
+Companies = new Meteor.Collection("companies");
 
 if (Meteor.isClient) {
 
