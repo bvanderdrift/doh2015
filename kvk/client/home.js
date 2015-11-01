@@ -38,6 +38,8 @@ getInitiatives = function() {
     }
 
 Template.Home.onCreated(function() {
+    if(Session.get("kvkData")) return;
+    
     var startKvkNr = "14053909";
         Session.set('kvkNr', startKvkNr);
         reloadKvkData(startKvkNr);
