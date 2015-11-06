@@ -62,12 +62,14 @@ if (Meteor.isServer) {
 	Meteor.startup(function () {
 		Meteor.methods({
 			filter: function(kvkNr){
-				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/Companies/byKvkNumber/" + kvkNr).data;
+				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/Companies/byKvkNumber/" + kvkNr + "&token=88witnhykqr4ichlzwdf").data;
 				kvkData.forEach(insertKvk);
+				console.log("Get company by KvK")
 				return kvkData[0]; //Always one element since kvkNr is unique
 			},
 			search: function(name) {
-				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?tradename="+escape(name)).data;
+				var kvkData = Meteor.http.call("GET", "http://kvkhackathon.azurewebsites.net/api/companies?tradename="+escape(name) + "&token=88witnhykqr4ichlzwdf").data;
+				console.log("Get company by Tradename")
 				kvkData.forEach(insertKvk);
 				return kvkData[0];
 			},
@@ -81,7 +83,7 @@ if (Meteor.isServer) {
 				
 				var key = [lat, lon, radius, offset].join(",");
 				if(!cache[key]){
-					var url = "http://kvkhackathon.azurewebsites.net/api/Companies/byGps?latitude="+lat+"&longitude="+lon+"&radius="+radius+"&offset="+offset;
+					var url = "http://kvkhackathon.azurewebsites.net/api/Companies/byGps?latitude="+lat+"&longitude="+lon+"&radius="+radius+"&offset="+offset+"&token=88witnhykqr4ichlzwdf";
 					var response = Meteor.http.call("GET", url);
 					var kvkData = response.data;
 					console.log("Found ", kvkData.length, "companies near", lat, lon, radius, offset, url);
