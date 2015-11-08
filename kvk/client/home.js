@@ -37,14 +37,6 @@ getInitiatives = function() {
         return Initiatives.find(query, { sort: { votes: -1 } }).fetch().filter(i => InitiativePredicate(kvkData, i))
     }
 
-Template.Home.onCreated(function() {
-    if(Session.get("kvkData")) return;
-    
-    var startKvkNr = "14053909";
-        Session.set('kvkNr', startKvkNr);
-        reloadKvkData(startKvkNr);
-})
-
 Template.Home.helpers({	
     businessName: function() {
         return Session.get("kvkData") ? Session.get("kvkData").businessName : "Loading...";

@@ -1,6 +1,9 @@
 Template.ApplicationLayout.helpers({
 	isActive: function(routeName){
 		return (Router.current().route.getName().toLowerCase() == routeName.toLowerCase())
+	},
+	isLoggedIn: function(){
+		return Session.get('kvkData') != undefined;
 	}
 })
 
