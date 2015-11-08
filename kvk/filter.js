@@ -71,8 +71,21 @@ if (Meteor.isServer) {
 				return bsiData;
 			},
 			near: function(lat, lon, radius) {
-				var kvkData = Meteor.http.call("GET", kvkUrl + "companies?latitude="+lat+"&longitude"+lon+"&radius="+radius + "&token=" + token);
-				return kvkData.data;
+				var result = [];
+
+				var radkm = radius * 1000;
+
+				var step = 50;
+				var offset = 0;
+				var kvkData = undefined;
+				while(!kvkData || kvkData.data.length > 0){
+					var req = kvkUrl + "Companies/byGps?latitude="+lat+"&longitude="+lon+"&radius="+radkm + "&token=" + token + "&offset=" + offset;
+					kvkData = Meteor.http.call("GET", req);
+					result = result.concat(kvkData.data);
+
+					offset += step;
+				}
+				return result;
 			}
 		});
 	});

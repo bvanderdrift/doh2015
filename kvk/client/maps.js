@@ -7,7 +7,6 @@ function zoomToRadius(zoomLevel){
 }
 
 Template.Home.onRendered(function() {
-
 	var mapBoundsDependency = new Deps.Dependency;
 	var markerDirectory = {};
 	
@@ -123,6 +122,8 @@ Template.Home.onRendered(function() {
 			Meteor.call("near", kvkData.gpsLatitude, kvkData.gpsLongitude, radius, function(err, response){
 				// Companies
 				var near = response;
+
+				console.log(near.length);
 					
 				// Initiatives
 				var dictionary = initiatives.reduce((store, item) => {
