@@ -68,7 +68,7 @@ Template.Home.onRendered(function() {
 	  };
 
 		var mapOptions = {
-		  zoom: 13,
+		  zoom: 15,
 		  mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 	

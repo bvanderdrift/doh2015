@@ -3,7 +3,7 @@ Initiatives = new Meteor.Collection("initiatives");
 if (Meteor.isClient) {
 
 	Template.registerHelper("count", function(array) {
-		if(typeof array == "object" && array.length)
+		if(typeof array == "object" && array != null && array != undefined  && array.length)
 			return array.length;
 		return 0;
 	});
