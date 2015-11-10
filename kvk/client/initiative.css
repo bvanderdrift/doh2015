@@ -15,3 +15,11 @@
 .md-flex .panel {
 		width:100%
 }
+
+.comments.list-group .list-group-separator:before {
+	width: calc(100% - 85px);
+}
+
+.comments.list-group .row-content {
+	min-height: 56px;
+}
