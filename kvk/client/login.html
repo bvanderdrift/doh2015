@@ -1,35 +1,42 @@
 <template name="login">
 
-<body>
 	<div class="container" id="formdiv">
 		<div class="row">
-			<form class="form-horizontal">
-				<fieldset>
-					<div class="form-group">
-			            <label for="inputkvknr" class="col-lg-2 control-label">KVK Nummer</label>
-			            <div class="col-lg-4">
-			                <input type="number" class="form-control" id="inputkvknr">
-			            </div>
-			        </div>
+						<div class=" col-lg-6 col-lg-offset-3">
 
-			        <div class="form-group">
-			            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-			            <div class="col-lg-4">
-			        		<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+							<h1>Please log in with your <br/>KvK credentials</h1>
 						</div>
-					</div>
+			<div class="well col-lg-6 col-lg-offset-3">
+				<form class="form-horizontal" style="margin-top:0; padding-bottom: 0">
+					<fieldset>
+						<div class="form-group">
+				            <label for="inputkvknr" class="col-lg-3 control-label">KvK Number</label>
+				            <div class="col-lg-9">
+				                <input type="number" class="form-control" id="inputkvknr">
+				            </div>
+				        </div>
 
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</div>
-				</fieldset>
-			</form>
+				        <div class="form-group">
+				            <label for="inputPassword" class="col-lg-3 control-label">Password</label>
+				            <div class="col-lg-9">
+				        		<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+							</div>
+						</div>
+
+						<div class="form-group" style="margin-bottom:0">
+						    <div class="col-lg-9 col-lg-offset-3">
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
 		</div>
 	</div>
 
-	<div class="container" id="spinnerdiv">
+<!-- 	<div class="container" id="spinnerdiv">
 	{{> spinner}}
-	</div>
-</body>
+	</div> -->
 
 </template>
+
